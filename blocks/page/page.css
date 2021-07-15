@@ -1,0 +1,8 @@
+.page {
+  display: flex;
+  max-width: 880px;
+  min-width: 320px;
+  flex-direction: column;
+  margin: 0 auto;
+}
+
