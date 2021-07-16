@@ -4,6 +4,14 @@
 @import url(../blocks/body/body.css);
 @import url(../blocks/page/page.css);
 
+@import url(../blocks/profile-form/profile-form.css);
+@import url(../blocks/profile-form/__container/profile-form__container.css);
+@import url(../blocks/profile-form/__toggle/profile-form__toggle.css);
+@import url(../blocks/profile-form/__title/profile-form__title.css);
+@import url(../blocks/profile-form/__form/profile-form__form.css);
+@import url(../blocks/profile-form/__input-field/profile-form__input-field.css);
+@import url(../blocks/profile-form/__save-button/profile-form__save-button.css);
+
 @import url(../blocks/header/header.css);
 @import url(../blocks/header/__logo/header__logo.css);
 

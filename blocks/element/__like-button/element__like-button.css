@@ -5,6 +5,7 @@
   align-items: center;
   line-height: 0;
   transition: opacity 0.2s ease-out;
+  cursor: pointer;
 }
 
 .element__like-button:hover {

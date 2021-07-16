@@ -10,6 +10,8 @@
   display: flex;
   justify-content: center;
   transition: opacity 0.2s ease-out;
+  cursor: pointer;
+
 }
 
 .profile__edit-button:hover {

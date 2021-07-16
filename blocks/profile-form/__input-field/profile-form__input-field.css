@@ -1,0 +1,14 @@
+.profile-form__input-field {
+  border: none;
+  max-width: 358px;
+  min-width: 238px;
+  height: 27px;
+  border-bottom: 1px solid rgb(42, 44, 47, .2);
+  font-size: 14px;
+  line-height: 17px;
+  font-weight: 400;
+  color: #000000;
+  padding-bottom: 29px;
+
+
+}

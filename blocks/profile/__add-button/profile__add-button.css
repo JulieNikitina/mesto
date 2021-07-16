@@ -6,6 +6,8 @@
   box-sizing: border-box;
   border-radius: 2px;
   transition: opacity 0.2s ease-out;
+  cursor: pointer;
+
 }
 
 .profile__add-button:hover {
