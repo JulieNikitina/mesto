@@ -1,0 +1,27 @@
+.profile-form__save-button {
+  width: 358px;
+  height: 50px;
+  color: #fff;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 22px;
+  background: #000000;
+  border-radius: 2px;
+  border: none;
+  transition: opacity 0.2s ease-out;
+  cursor: pointer;
+  margin: 48px auto 37px auto;
+}
+
+.profile-form__save-button:hover{
+  opacity: 0.8;
+}
+
+@media screen and (max-width: 650px)  {
+  .profile-form__save-button {
+    width: 238px;
+    height: 46px;
+    font-size: 14px;
+    line-height: 17px;
+  }
+}
