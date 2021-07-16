@@ -9,8 +9,8 @@
 
 @media screen and (max-width: 700px)  {
   .profile__text-info {
-    margin: 24px auto 36px auto;
-    grid-row-gap:14px;
+    margin: 24px auto 35px auto;
+    grid-row-gap:8px;
     grid-column-gap: 10px;
 
   }

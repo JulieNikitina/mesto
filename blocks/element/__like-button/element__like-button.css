@@ -4,4 +4,10 @@
   margin-left: 25px;
   align-items: center;
   line-height: 0;
+  transition: opacity 0.2s ease-out;
 }
+
+.element__like-button:hover {
+  opacity: 0.5;
+}
+
