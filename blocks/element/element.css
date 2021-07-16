@@ -1,0 +1,11 @@
+.element {
+  background: #FFFFFF;
+  border-radius: 10px;
+  overflow: hidden;
+  height: 360px;
+  max-width: 282px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+}

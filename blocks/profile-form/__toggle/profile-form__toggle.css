@@ -1,0 +1,31 @@
+.profile-form__toggle {
+  width: 32px;
+  height: 32px;
+  transition: opacity 0.2s ease-out;
+  border: none;
+  padding: 0;
+  background-image: url(../../../images/profile-form/form-close-icon.svg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-color: transparent;
+  grid-column: 3;
+  grid-row: 1;
+  align-self: flex-end;
+  cursor: pointer;
+
+}
+
+.profile-form__toggle:hover {
+  opacity: 0.6;
+}
+
+
+@media screen and (max-width: 650px)  {
+  .profile-form__toggle {
+    width: 20px;
+    height: 20px;
+    grid-column: 2;
+    justify-self: right;
+
+  }
+}

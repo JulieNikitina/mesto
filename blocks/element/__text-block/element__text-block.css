@@ -1,0 +1,7 @@
+.element__text-block {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 15px 0 21px;
+  height: inherit;
+  align-items: center;
+}
