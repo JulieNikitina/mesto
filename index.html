@@ -8,14 +8,14 @@
 <body class="body">
   <div class="page">
     <section class= "profile-form">
-      <button class="profile-form__toggle">
+      <button class="profile-form__toggle" type="button">
       </button>
       <div class="profile-form__container">
         <h2 class="profile-form__title">Редактировать профиль</h2>
-        <form class="profile-form__form">
-          <input class="profile-form__input-field">
-          <input class="profile-form__input-field">
-          <button class="profile-form__save-button">Сохранить</button>
+        <form class="profile-form__form" name="popupForm">
+          <input class="profile-form__input-field" type="text" name="name" id="profileName">
+          <input class="profile-form__input-field" type="text" name="description" id="profileDescription">
+          <button class="profile-form__save-button" type="submit">Сохранить</button>
         </form>
       </div>
     </section>
@@ -101,5 +101,6 @@
       </footer>
     </main>
   </div>
+  <script src="js/script.js"></script>
 </body>
 </html>

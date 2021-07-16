@@ -5,7 +5,7 @@
   top: 0;
   left: 0;
   position: fixed;
-  display: grid;
+  display: none;
   grid-template-columns: 1fr max-content 1fr;
   grid-template-rows: 1fr max-content 1fr;
   gap: 8px;
