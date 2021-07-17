@@ -11,7 +11,10 @@
   justify-content: center;
   transition: opacity 0.2s ease-out;
   cursor: pointer;
-
+  background-image: url(../../../images/profile/profile-edit-button.svg);
+  background-repeat: no-repeat;
+  background-size: 10px;
+  background-position: center;
 }
 
 .profile__edit-button:hover {
@@ -22,5 +25,7 @@
   .profile__edit-button {
     width: 18px;
     height: 18px;
+    background-size: 7.5px;
+
   }
 }
