@@ -11,13 +11,13 @@ let currentDescription = document.querySelector('.profile__description');
 let fieldName = document.getElementById('profileName');
 let fieldDescription = document.getElementById('profileDescription');
 
-function popupOpen() {
+function openPopup() {
   popup.classList.add('profile-form_active');
   fieldName.value = currentName.textContent;
   fieldDescription.value = currentDescription.textContent;
 }
 
-function popupClose() {
+function closePopup() {
   popup.classList.remove('profile-form_active');
 }
 
@@ -25,11 +25,11 @@ function changeName(evt) {
   evt.preventDefault();
   currentName.textContent = fieldName.value;
   currentDescription.textContent = fieldDescription.value;
-  popupClose();
+  closePopup();
 }
 
 
-editButton.addEventListener('click', popupOpen);
-closeButton.addEventListener('click', popupClose);
+editButton.addEventListener('click', openPopup);
+closeButton.addEventListener('click', closePopup);
 editForm.addEventListener('submit', changeName);
 

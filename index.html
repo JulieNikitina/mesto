@@ -8,7 +8,78 @@
 </head>
 <body class="body">
   <div class="page">
-    <section class= "profile-form">
+    <header class="header">
+      <img class="header__logo" src="./images/header/header-logo.svg" alt="Лого">
+    </header>
+    <main>
+      <section class="profile">
+        <div class="profile__user-block">
+          <img class="profile__photo" src="./images/profile/profile-image.jpg" alt="Аватар">
+          <div class="profile__text-info">
+            <h1 class="profile__name">Юля Никитина</h1>
+            <button class="profile__edit-button" title="Редактировать профиль" aria-label="Редактировать профиль">
+            </button>
+            <p class="profile__description">Амбассадор Байкала</p>
+          </div>
+        </div>
+        <button class="profile__add-button" type="button" aria-label="Добавить элемент">
+        </button>
+      </section>
+      <section class="elements">
+        <article class="element">
+          <img class="element__photo" src="./images/elements/elements-olkhon.JPG" alt="Ольхон">
+          <div class="element__text-block">
+            <h2 class="element__title">о. Ольхон</h2>
+            <button class="element__like-button" type="button">
+            </button>
+          </div>
+        </article>
+        <article class="element">
+          <img class="element__photo" src="./images/elements/elements-aya.JPG" alt="Бухта Ая">
+          <div class="element__text-block">
+            <h2 class="element__title">бухта Ая</h2>
+            <button class="element__like-button" type="button">
+            </button>
+          </div>
+        </article>
+        <article class="element">
+          <img class="element__photo" src="./images/elements/elements-tazherany.JPG" alt="Тажераны">
+          <div class="element__text-block">
+            <h2 class="element__title">Тажеранские степи</h2>
+            <button class="element__like-button" type="button">
+            </button>
+          </div>
+        </article>
+        <article class="element">
+          <img class="element__photo" src="./images/elements/elements-mamay.JPG" alt="Мамай">
+          <div class="element__text-block">
+            <h2 class="element__title">Мамай</h2>
+            <button class="element__like-button" type="button">
+            </button>
+          </div>
+        </article>
+        <article class="element">
+          <img class="element__photo" src="./images/elements/elements-bbt.JPG" alt="ББТ">
+          <div class="element__text-block">
+            <h2 class="element__title">Большая Байкальская Тропа</h2>
+            <button class="element__like-button" type="button">
+            </button>
+          </div>
+        </article>
+        <article class="element">
+          <img class="element__photo" src="./images/elements/elements-arshan.JPG" alt="Аршан">
+          <div class="element__text-block">
+            <h2 class="element__title">Аршан</h2>
+            <button class="element__like-button" type="button">
+            </button>
+          </div>
+        </article>
+      </section>
+    </main>
+    <footer class="footer">
+      <p class="footer__copyright">&copy; 2021 Mesto Russia</p>
+    </footer>
+    <div class= "profile-form">
       <button class="profile-form__toggle" type="button">
       </button>
       <div class="profile-form__container">
@@ -19,81 +90,7 @@
           <button class="profile-form__save-button" type="submit">Сохранить</button>
         </form>
       </div>
-    </section>
-    <header class="header">
-      <img class="header__logo" src="./images/header/header-logo.svg" alt="Лого">
-    </header>
-    <main>
-      <section class="profile">
-        <div class="profile__user-block">
-          <div class="profile__avatar">
-            <img class="profile__photo" src="./images/profile/profile-image.jpg" alt="Аватар">
-          </div>
-          <div class="profile__text-info">
-            <h1 class="profile__name">Юля Никитина</h1>
-            <button class="profile__edit-button" title="Редактировать профиль">
-            </button>
-            <p class="profile__description">Амбассадор Байкала</p>
-          </div>
-        </div>
-        <button class="profile__add-button">
-          <img class="profile__add-button-img" src="./images/profile/profile-sign-add.svg" alt="+">
-        </button>
-      </section>
-      <section class="elements">
-        <div class="element">
-          <img class="element__photo" src="./images/elements/elements-olkhon.JPG" alt="Ольхон">
-          <div class="element__text-block">
-            <h2 class="element__title">о. Ольхон</h2>
-            <button class="element__like-button">
-            </button>
-          </div>
-        </div>
-        <div class="element">
-          <img class="element__photo" src="./images/elements/elements-aya.JPG" alt="Бухта Ая">
-          <div class="element__text-block">
-            <h2 class="element__title">бухта Ая</h2>
-            <button class="element__like-button">
-            </button>
-          </div>
-        </div>
-        <div class="element">
-          <img class="element__photo" src="./images/elements/elements-tazherany.JPG" alt="Тажераны">
-          <div class="element__text-block">
-            <h2 class="element__title">Тажеранские степи</h2>
-            <button class="element__like-button">
-            </button>
-          </div>
-        </div>
-        <div class="element">
-          <img class="element__photo" src="./images/elements/elements-mamay.JPG" alt="Мамай">
-          <div class="element__text-block">
-            <h2 class="element__title">Мамай</h2>
-            <button class="element__like-button">
-            </button>
-          </div>
-        </div>
-        <div class="element">
-          <img class="element__photo" src="./images/elements/elements-bbt.JPG" alt="ББТ">
-          <div class="element__text-block">
-            <h2 class="element__title">Большая Байкальская Тропа</h2>
-            <button class="element__like-button">
-            </button>
-          </div>
-        </div>
-        <div class="element">
-          <img class="element__photo" src="./images/elements/elements-arshan.JPG" alt="Аршан">
-          <div class="element__text-block">
-            <h2 class="element__title">Аршан</h2>
-            <button class="element__like-button">
-            </button>
-          </div>
-        </div>
-      </section>
-      <footer class="footer">
-        <p class="footer__copyright">&copy; 2021 Mesto Russia</p>
-      </footer>
-    </main>
+    </div>
   </div>
   <script src="js/script.js"></script>
 </body>

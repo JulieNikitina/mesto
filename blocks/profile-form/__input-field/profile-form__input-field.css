@@ -1,17 +1,18 @@
 .profile-form__input-field {
   border: none;
   width: 358px;
-  height: 27px;
   border-bottom: 1px solid rgb(42, 44, 47, .2);
-  margin-bottom: 30px;
+  margin-top: 25px;
+  padding-bottom: 13px;
   font-size: 14px;
   line-height: 17px;
   font-weight: 400;
   color: #000000;
+
 }
 
-.profile-form__input-field:nth-child(2){
-  margin-bottom: 48px;
+.profile-form__input-field:first-of-type{
+  margin-top: 49px;
 }
 
 .profile-form__input-field:focus{
@@ -22,5 +23,8 @@
 @media screen and (max-width: 650px)  {
   .profile-form__input-field {
     width: 238px;
+  }
+  .profile-form__input-field:first-of-type{
+    margin-top: 75px;
   }
 }
