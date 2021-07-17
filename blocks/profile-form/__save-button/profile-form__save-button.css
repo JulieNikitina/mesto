@@ -10,7 +10,7 @@
   border: none;
   transition: opacity 0.2s ease-out;
   cursor: pointer;
-  margin: 48px auto 37px auto;
+  margin: 0 auto 37px auto;
 }
 
 .profile-form__save-button:hover{

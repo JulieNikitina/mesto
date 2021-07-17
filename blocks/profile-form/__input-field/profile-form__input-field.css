@@ -1,14 +1,26 @@
 .profile-form__input-field {
   border: none;
-  max-width: 358px;
-  min-width: 238px;
+  width: 358px;
   height: 27px;
   border-bottom: 1px solid rgb(42, 44, 47, .2);
+  margin-bottom: 30px;
   font-size: 14px;
   line-height: 17px;
   font-weight: 400;
   color: #000000;
-  padding-bottom: 29px;
+}
 
+.profile-form__input-field:nth-child(2){
+  margin-bottom: 48px;
+}
 
+.profile-form__input-field:focus{
+  outline: none;
+  background-color: transparent;
+}
+
+@media screen and (max-width: 650px)  {
+  .profile-form__input-field {
+    width: 238px;
+  }
 }

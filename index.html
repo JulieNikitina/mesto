@@ -4,18 +4,19 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="./pages/index.css">
+  <title>Mesto</title>
 </head>
 <body class="body">
   <div class="page">
     <section class= "profile-form">
-      <button class="profile-form__toggle">
+      <button class="profile-form__toggle" type="button">
       </button>
       <div class="profile-form__container">
         <h2 class="profile-form__title">Редактировать профиль</h2>
-        <form class="profile-form__form">
-          <input class="profile-form__input-field">
-          <input class="profile-form__input-field">
-          <button class="profile-form__save-button">Сохранить</button>
+        <form class="profile-form__form" name="popupForm">
+          <input required class="profile-form__input-field" type="text" name="name" id="profileName">
+          <input required class="profile-form__input-field" type="text" name="description" id="profileDescription">
+          <button class="profile-form__save-button" type="submit">Сохранить</button>
         </form>
       </div>
     </section>
@@ -30,8 +31,7 @@
           </div>
           <div class="profile__text-info">
             <h1 class="profile__name">Юля Никитина</h1>
-            <button class="profile__edit-button">
-              <img class="profile__edit-button-img" src="./images/profile/profile-edit-button.svg" alt="Редактирование профиля">
+            <button class="profile__edit-button" title="Редактировать профиль">
             </button>
             <p class="profile__description">Амбассадор Байкала</p>
           </div>
@@ -46,7 +46,6 @@
           <div class="element__text-block">
             <h2 class="element__title">о. Ольхон</h2>
             <button class="element__like-button">
-              <img class="element__like" src="./images/elements/profile-like.svg" alt="Лайк">
             </button>
           </div>
         </div>
@@ -55,7 +54,6 @@
           <div class="element__text-block">
             <h2 class="element__title">бухта Ая</h2>
             <button class="element__like-button">
-              <img class="element__like" src="./images/elements/profile-like.svg" alt="Лайк">
             </button>
           </div>
         </div>
@@ -64,7 +62,6 @@
           <div class="element__text-block">
             <h2 class="element__title">Тажеранские степи</h2>
             <button class="element__like-button">
-              <img class="element__like" src="./images/elements/profile-like.svg" alt="Лайк">
             </button>
           </div>
         </div>
@@ -73,7 +70,6 @@
           <div class="element__text-block">
             <h2 class="element__title">Мамай</h2>
             <button class="element__like-button">
-              <img class="element__like" src="./images/elements/profile-like.svg" alt="Лайк">
             </button>
           </div>
         </div>
@@ -82,7 +78,6 @@
           <div class="element__text-block">
             <h2 class="element__title">Большая Байкальская Тропа</h2>
             <button class="element__like-button">
-              <img class="element__like" src="./images/elements/profile-like.svg" alt="Лайк">
             </button>
           </div>
         </div>
@@ -91,7 +86,6 @@
           <div class="element__text-block">
             <h2 class="element__title">Аршан</h2>
             <button class="element__like-button">
-              <img class="element__like" src="./images/elements/profile-like.svg" alt="Лайк">
             </button>
           </div>
         </div>
@@ -101,5 +95,6 @@
       </footer>
     </main>
   </div>
+  <script src="js/script.js"></script>
 </body>
 </html>
