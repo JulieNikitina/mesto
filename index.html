@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="./pages/index.css">
+  <title>Mesto</title>
 </head>
 <body class="body">
   <div class="page">
@@ -13,8 +14,8 @@
       <div class="profile-form__container">
         <h2 class="profile-form__title">Редактировать профиль</h2>
         <form class="profile-form__form" name="popupForm">
-          <input class="profile-form__input-field" type="text" name="name" id="profileName">
-          <input class="profile-form__input-field" type="text" name="description" id="profileDescription">
+          <input required class="profile-form__input-field" type="text" name="name" id="profileName">
+          <input required class="profile-form__input-field" type="text" name="description" id="profileDescription">
           <button class="profile-form__save-button" type="submit">Сохранить</button>
         </form>
       </div>
@@ -30,7 +31,7 @@
           </div>
           <div class="profile__text-info">
             <h1 class="profile__name">Юля Никитина</h1>
-            <button class="profile__edit-button">
+            <button class="profile__edit-button" title="Редактировать профиль">
             </button>
             <p class="profile__description">Амбассадор Байкала</p>
           </div>

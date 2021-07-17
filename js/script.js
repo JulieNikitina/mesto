@@ -23,9 +23,7 @@ function popupClose() {
 
 function changeName(evt) {
   evt.preventDefault();
-  let nameInp = fieldName.value
-  console.log(nameInp);
-  currencyName.textContent = nameInp;
+  currencyName.textContent = fieldName.value;
   currencyDescription.textContent = fieldDescription.value;
   popupClose();
 }
