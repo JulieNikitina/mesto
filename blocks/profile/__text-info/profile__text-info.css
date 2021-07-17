@@ -7,7 +7,7 @@
   grid-column-gap: 18px;
 }
 
-@media screen and (max-width: 700px)  {
+@media screen and (max-width: 900px)  {
   .profile__text-info {
     margin: 24px auto 35px auto;
     grid-column-gap: 10px;
