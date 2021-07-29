@@ -31,19 +31,36 @@
     <footer class="footer">
       <p class="footer__copyright">&copy; 2021 Mesto Russia</p>
     </footer>
-    <div class= "profile-form">
-      <button class="profile-form__toggle" type="button">
+
+    <div class= "form" id="profileForm">
+      <button class="form__toggle" type="button">
       </button>
-      <div class="profile-form__container">
-        <h2 class="profile-form__title">Редактировать профиль</h2>
-        <form class="profile-form__form" name="popupForm">
-          <input required class="profile-form__input-field" type="text" name="name" id="profileName">
-          <input required class="profile-form__input-field" type="text" name="description" id="profileDescription">
-          <button class="profile-form__save-button" type="submit">Сохранить</button>
+      <div class="form__container">
+        <h2 class="form__title">Редактировать профиль</h2>
+        <form class="form__form" name="popupEditForm">
+          <input required class="form__input-field" type="text" name="name" id="profileName">
+          <input required class="form__input-field" type="text" name="description" id="profileDescription">
+          <button class="form__save-button" type="submit">Сохранить</button>
         </form>
       </div>
     </div>
+
+    <div class= "form" id="addCardForm">
+      <button class="form__toggle" type="button">
+      </button>
+      <div class="form__container">
+        <h2 class="form__title">Новое место</h2>
+        <form class="form__form" name="popupAddCardForm">
+          <input required class="form__input-field" type="text" name="name" id="placeTitle">
+          <input required class="form__input-field" type="text" name="description" id="placeLink">
+          <button class="form__save-button" type="submit">Сохранить</button>
+        </form>
+      </div>
+    </div>
+
+
   </div>
+
   <template id="element-template">
     <article class="element">
       <img class="element__photo" src="" alt="">
@@ -54,6 +71,9 @@
       </div>
     </article>
   </template>
+
   <script src="js/script.js"></script>
+  <script src="js/initial.js"></script>
+
 </body>
 </html>

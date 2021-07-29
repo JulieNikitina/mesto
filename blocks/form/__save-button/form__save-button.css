@@ -1,4 +1,4 @@
-.profile-form__save-button {
+.form__save-button {
   width: 358px;
   height: 50px;
   color: #fff;
@@ -13,12 +13,12 @@
   margin: 42px auto 37px auto;
 }
 
-.profile-form__save-button:hover{
+.form__save-button:hover{
   opacity: 0.8;
 }
 
 @media screen and (max-width: 650px)  {
-  .profile-form__save-button {
+  .form__save-button {
     width: 238px;
     height: 46px;
     font-size: 14px;

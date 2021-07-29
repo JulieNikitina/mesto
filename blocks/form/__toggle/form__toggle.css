@@ -1,4 +1,4 @@
-.profile-form__toggle {
+.form__toggle {
   width: 32px;
   height: 32px;
   transition: opacity 0.2s ease-out;
@@ -15,13 +15,13 @@
 
 }
 
-.profile-form__toggle:hover {
+.form__toggle:hover {
   opacity: 0.6;
 }
 
 
 @media screen and (max-width: 650px)  {
-  .profile-form__toggle {
+  .form__toggle {
     width: 20px;
     height: 20px;
     grid-column: 2;
