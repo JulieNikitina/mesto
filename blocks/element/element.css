@@ -4,6 +4,7 @@
   overflow: hidden;
   max-width: 282px;
   display: flex;
+  position: relative;
   flex-direction: column;
   justify-content: space-between;
 

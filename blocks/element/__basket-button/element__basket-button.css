@@ -1,0 +1,21 @@
+.element__basket-button {
+  position: absolute;
+  top: 18px;
+  right: 14px;
+  background-color: transparent;
+  border: 0;
+  align-items: center;
+  line-height: 0;
+  transition: opacity 0.2s ease-out;
+  cursor: pointer;
+  background-image: url(../../../images/elements/elements-basket.svg);
+  background-repeat: no-repeat;
+  width: 18px;
+  height: 19px;
+  padding: 0;
+}
+
+.element__basket-button:hover {
+  opacity: 0.5;
+}
+

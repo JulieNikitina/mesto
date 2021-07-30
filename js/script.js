@@ -1,7 +1,9 @@
-// Работа с выводом карточек элементов
+// контейнер с карточками
 const elementsContainer = document.querySelector('.elements');
+// шаблон элемента-карточки
 const elementTemplate = document.querySelector('#element-template').content;
 
+// исходный массив элементов
 const initialCards = [
   {
     name: 'Аршан',
@@ -29,6 +31,7 @@ const initialCards = [
   },
 ];
 
+// функция добавления элемента в контейнер
 function addCard(element){
   const elementCard = elementTemplate.querySelector('.element').cloneNode(true);
   elementCard.querySelector('.element__title').textContent = element.name;
@@ -37,15 +40,39 @@ function addCard(element){
   elementsContainer.prepend(elementCard);
 }
 
+//заполнение страницы исходным массивом элементов
 initialCards.forEach(function (element) {
   addCard(element);
 })
 
-// Работа с формой редактирования профиля
+// функция удаления элемента из контейнера
+function deleteCard(evt) {
+  const targetCard = evt.target.closest('.element');
+  console.log(targetCard)
+  targetCard.remove();
+}
+// функция добавления лайка
+function addLike(evt) {
+  evt.target.classList.toggle('element__like-button_active');
+}
+
+// Кнопки
 let editButton = document.querySelector('.profile__edit-button');
 let addButton = document.querySelector('.profile__add-button');
+const basketButtons = document.querySelectorAll('.element__basket-button');
+const likeButtons = document.querySelectorAll('.element__like-button');
 
-// находим нужные попапы
+// Добавления слушателя и вызова функции удаления элемента
+basketButtons.forEach(function (button) {
+  button.addEventListener('click', deleteCard);
+})
+
+// Добавление слушателя и вызова функции лайка
+likeButtons.forEach(function (button) {
+  button.addEventListener('click', addLike);
+})
+
+// Работа с попапами
 
 // попап редактирования
 let popupEdit = document.getElementById('profileForm');
@@ -61,7 +88,7 @@ let addForm = popupAdd.querySelector('.form__form')
 // кнопка закрытия в попапе добавления
 let closeAddFormButton = popupAdd.querySelector('.form__toggle');
 
-
+// получение текущих значений имени и описания профиля
 let currentName = document.querySelector('.profile__name');
 let currentDescription = document.querySelector('.profile__description');
 
@@ -97,6 +124,7 @@ function closePopup(evt) {
   popup.classList.remove('form_active');
 }
 
+// функция изменения данных профиля пользователя
 function changeName(evt) {
   evt.preventDefault();
   currentName.textContent = fieldName.value;
@@ -104,6 +132,7 @@ function changeName(evt) {
   closePopup(evt);
 }
 
+// функция добавления новой карточки на страницу
 function addNewCard(evt) {
   evt.preventDefault();
   let newCard = {
@@ -111,7 +140,6 @@ function addNewCard(evt) {
     link : fieldLink.value,
   }
   addCard(newCard);
-
   closePopup(evt);
 }
 
