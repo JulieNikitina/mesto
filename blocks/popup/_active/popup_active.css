@@ -1,0 +1,5 @@
+.popup_active {
+  display: grid;
+  visibility: visible;
+  opacity: 1;
+}

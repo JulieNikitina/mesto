@@ -32,40 +32,43 @@
       <p class="footer__copyright">&copy; 2021 Mesto Russia</p>
     </footer>
 
-    <div class= "form" id="profileForm">
-      <button class="form__toggle" type="button">
+    <div class= "popup" id="profileForm">
+      <button class="popup__close-button" type="button">
       </button>
-      <div class="form__container">
-        <h2 class="form__title">Редактировать профиль</h2>
-        <form class="form__form" name="popupEditForm">
+      <div class="popup__container">
+        <h2 class="popup__title">Редактировать профиль</h2>
+        <form class="form" name="popupEditForm">
           <input required class="form__input-field" type="text" name="name" id="profileName">
           <input required class="form__input-field" type="text" name="description" id="profileDescription">
-          <button class="form__save-button" type="submit">Сохранить</button>
+          <button class="form__submit-button" type="submit">Сохранить</button>
         </form>
       </div>
     </div>
 
-    <div class= "form" id="addCardForm">
-      <button class="form__toggle" type="button">
+    <div class= "popup" id="addCardForm">
+      <button class="popup__close-button" type="button">
       </button>
-      <div class="form__container">
-        <h2 class="form__title">Новое место</h2>
-        <form class="form__form" name="popupAddCardForm">
-          <input required class="form__input-field" type="text" name="name" id="placeTitle">
-          <input required class="form__input-field" type="text" name="description" id="placeLink">
-          <button class="form__save-button" type="submit">Сохранить</button>
+      <div class="popup__container">
+        <h2 class="popup__title">Новое место</h2>
+        <form class="form" name="popupAddCardForm">
+          <input required class="form__input-field" type="text" name="name" id="placeTitle" placeholder="Название">
+          <input required class="form__input-field" type="text" name="description" id="placeLink" placeholder="Ссылка на картинку">
+          <button class="form__submit-button" type="submit">Сохранить</button>
         </form>
       </div>
     </div>
-
-
+    <div class="popup" id="viewPhoto">
+      <button class="popup__close-button" type="button">
+      </button>
+      <img class="popup__photo" src="">
+      <h3 class="popup__photo-caption"></h3>
+    </div>
   </div>
-
   <template id="element-template">
     <article class="element">
       <button class="element__basket-button" type="button">
       </button>
-      <img class="element__photo" src="" alt="">
+      <img class="element__photo" src="./images/profile/profile-image.jpg" alt="Описание изображения">
       <div class="element__text-block">
         <h2 class="element__title"></h2>
         <button class="element__like-button" type="button">
@@ -73,9 +76,6 @@
       </div>
     </article>
   </template>
-
   <script src="js/script.js"></script>
-  <script src="js/initial.js"></script>
-
 </body>
 </html>

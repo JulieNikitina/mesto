@@ -4,16 +4,20 @@
 @import url(../blocks/body/body.css);
 @import url(../blocks/page/page.css);
 
-@import url(../blocks/form/profile-form.css);
-@import url(../blocks/form/_active/form_active.css);
-@import url(../blocks/form/__container/form__container.css);
-@import url(../blocks/form/__toggle/form__toggle.css);
-@import url(../blocks/form/__title/form__title.css);
-@import url(../blocks/form/__form/form__form.css);
+@import url(../blocks/popup/popup.css);
+@import url(../blocks/popup/_active/popup_active.css);
+@import url(../blocks/popup/__container/popup__container.css);
+@import url(../blocks/popup/__close-button/popup__close-button.css);
+@import url(../blocks/popup/__title/popup__title.css);
+@import url(../blocks/popup/__photo/popup__photo.css);
+@import url(../blocks/popup/__photo-caption/popup__photo-caption.css);
+
+
+
+@import url(../blocks/form/form.css);
 @import url(../blocks/form/__input-field/form__input-field.css);
 @import url(../blocks/form/__input-field/_placeholder/form__input-field_placeholder.css);
-
-@import url(../blocks/form/__save-button/form__save-button.css);
+@import url(../blocks/form/__submit-button/form__submit-button.css);
 
 @import url(../blocks/header/header.css);
 @import url(../blocks/header/__logo/header__logo.css);
