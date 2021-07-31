@@ -39,8 +39,6 @@ const addButton = document.querySelector('.profile__add-button');
 const popupEdit = document.querySelector('#profileForm');
 // форма редактирования
 const editForm = popupEdit.querySelector('.form');
-// кнопка закрытия в попапе редактирования
-const closeEditFormButton = popupEdit.querySelector('.popup__close-button');
 // получение текущих значений имени и описания профиля
 const currentName = document.querySelector('.profile__name');
 const currentDescription = document.querySelector('.profile__description');
@@ -52,16 +50,12 @@ const fieldDescription = editForm.querySelector('#profileDescription');
 const popupAdd = document.querySelector('#addCardForm');
 // форма добавления
 const addForm = popupAdd.querySelector('.form')
-// кнопка закрытия в попапе добавления
-const closeAddFormButton = popupAdd.querySelector('.popup__close-button');
 // поля формы добавления элемента
 const fieldTitle = addForm.querySelector('#placeTitle');
 const fieldLink = addForm.querySelector('#placeLink');
 
 // попап просмотра фото
 const popupPhotoView = document.querySelector('#viewPhoto');
-// кнопка закрытия в попапе просмотра фото
-const closeViewPhotoButton = popupPhotoView.querySelector('.popup__close-button');
 // фото и описание в попапе просмотра фото
 const popupPhoto = popupPhotoView.querySelector('.popup__photo');
 const popupPhotoCapture = popupPhotoView.querySelector('.popup__photo-caption');
