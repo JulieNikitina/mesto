@@ -1,4 +1,4 @@
-.profile-form__input-field {
+.form__input-field {
   border: none;
   width: 358px;
   border-bottom: 1px solid rgb(42, 44, 47, .2);
@@ -11,20 +11,20 @@
 
 }
 
-.profile-form__input-field:first-of-type{
+.form__input-field:first-of-type{
   margin-top: 49px;
 }
 
-.profile-form__input-field:focus{
+.form__input-field:focus{
   outline: none;
   background-color: transparent;
 }
 
 @media screen and (max-width: 650px)  {
-  .profile-form__input-field {
+  .form__input-field {
     width: 238px;
   }
-  .profile-form__input-field:first-of-type{
+  .form__input-field:first-of-type{
     margin-top: 75px;
   }
 }
