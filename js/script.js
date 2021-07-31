@@ -115,6 +115,7 @@ function openPopup(popup, evt) {
     case 'viewPhoto':
       popupPhotoCapture.textContent = evt.target.alt;
       popupPhoto.src = evt.target.src;
+      popupPhoto.alt = evt.target.alt;
   }
 }
 
