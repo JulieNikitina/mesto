@@ -63,27 +63,26 @@ const popupPhotoCapture = popupPhotoView.querySelector('.popup__photo-caption');
 // кнопки закрытия попапов
 const closeButtons = document.querySelectorAll('.popup__close-button');
 
+// шаблон карточки
+const templateCard = elementTemplate.querySelector('.element');
+
 // функция создания карточки
 function createCard(name, link){
-  const elementCard = elementTemplate.querySelector('.element').cloneNode(true);
+  const elementCard = templateCard.cloneNode(true);
   const cardPhoto = elementCard.querySelector('.element__photo')
   elementCard.querySelector('.element__title').textContent = name;
   cardPhoto.src = link;
   cardPhoto.alt = name;
-  cardPhoto.addEventListener('click', function(evt) {openPhotoViewPopup(evt)});
+  cardPhoto.addEventListener('click', openPhotoViewPopup);
   elementCard.querySelector('.element__basket-button').addEventListener('click', deleteCard);
   elementCard.querySelector('.element__like-button').addEventListener('click', addLike);
   return elementCard;
 }
+
 // функция добавления элемента в контейнер
 function addCard(container, element){
   container.prepend(element);
 }
-
-//заполнение страницы исходным массивом элементов
-initialCards.forEach(function (element) {
-  addCard(elementsContainer, createCard(element.name, element.link));
-})
 
 // функция добавления новой карточки на страницу
 function addNewCard(evt) {
@@ -109,6 +108,7 @@ function openPopup(popup){
   popup.classList.add('popup_active');
 }
 
+// функция открытия попапа добавления нового элемента
 function openAddCardPopup(){
   openPopup(popupAdd);
 }
@@ -133,12 +133,6 @@ function closePopup(popup) {
   popup.classList.remove('popup_active');
 }
 
-// добавление слушателей на кнопку закрытия попапов
-closeButtons.forEach(function (button) {
-  const popup = button.closest('.popup')
-  button.addEventListener('click', function(evt) {closePopup(popup)});
-})
-
 // функция изменения данных профиля пользователя
 function changeName(evt) {
   evt.preventDefault();
@@ -146,6 +140,17 @@ function changeName(evt) {
   currentDescription.textContent = fieldDescription.value;
   closePopup(popupEdit);
 }
+
+//заполнение страницы исходным массивом элементов
+initialCards.forEach(function (element) {
+  addCard(elementsContainer, createCard(element.name, element.link));
+})
+
+// добавление слушателей на кнопку закрытия попапов
+closeButtons.forEach(function (button) {
+  const popup = button.closest('.popup')
+  button.addEventListener('click', function(evt) {closePopup(popup)});
+})
 
 editButton.addEventListener('click', openProfilePopup);
 addButton.addEventListener('click', openAddCardPopup);
