@@ -63,33 +63,34 @@ const popupPhotoCapture = popupPhotoView.querySelector('.popup__photo-caption');
 // кнопки закрытия попапов
 const closeButtons = document.querySelectorAll('.popup__close-button');
 
-// функция добавления элемента в контейнер
-function addCard(element){
+// функция создания карточки
+function createCard(name, link){
   const elementCard = elementTemplate.querySelector('.element').cloneNode(true);
   const cardPhoto = elementCard.querySelector('.element__photo')
-  elementCard.querySelector('.element__title').textContent = element.name;
-  cardPhoto.src = element.link;
-  cardPhoto.alt = element.name;
-  cardPhoto.addEventListener('click', function(evt) {openPopup(popupPhotoView, evt)});
+  elementCard.querySelector('.element__title').textContent = name;
+  cardPhoto.src = link;
+  cardPhoto.alt = name;
+  cardPhoto.addEventListener('click', function(evt) {openPhotoViewPopup(evt)});
   elementCard.querySelector('.element__basket-button').addEventListener('click', deleteCard);
   elementCard.querySelector('.element__like-button').addEventListener('click', addLike);
-  elementsContainer.prepend(elementCard);
+  return elementCard;
+}
+// функция добавления элемента в контейнер
+function addCard(container, element){
+  container.prepend(element);
 }
 
 //заполнение страницы исходным массивом элементов
 initialCards.forEach(function (element) {
-  addCard(element);
+  addCard(elementsContainer, createCard(element.name, element.link));
 })
 
 // функция добавления новой карточки на страницу
 function addNewCard(evt) {
   evt.preventDefault();
-  const newCard = {
-    name : fieldTitle.value,
-    link : fieldLink.value
-  }
-  addCard(newCard);
-  closePopup(evt);
+  addCard(elementsContainer, createCard(fieldTitle.value, fieldLink.value));
+  closePopup(popupAdd);
+  addForm.reset()
 }
 
 // функция удаления элемента со страницы
@@ -104,42 +105,50 @@ function addLike(evt) {
 }
 
 // функция открытия попапа
-function openPopup(popup, evt) {
+function openPopup(popup){
   popup.classList.add('popup_active');
-  const popupID = popup.id;
-  switch (popupID) {
-    case 'profileForm':
-      fieldName.value = currentName.textContent;
-      fieldDescription.value = currentDescription.textContent;
-      break
-    case 'viewPhoto':
-      popupPhotoCapture.textContent = evt.target.alt;
-      popupPhoto.src = evt.target.src;
-      popupPhoto.alt = evt.target.alt;
-  }
+}
+
+function openAddCardPopup(){
+  openPopup(popupAdd);
+}
+
+//функция открытия попапа редактирования профиля
+function openProfilePopup(){
+  openPopup(popupEdit)
+  fieldName.value = currentName.textContent;
+  fieldDescription.value = currentDescription.textContent;
+}
+
+// функция открытия попапа просмотра фото
+function openPhotoViewPopup(evt){
+  openPopup(popupPhotoView)
+  popupPhotoCapture.textContent = evt.target.alt;
+  popupPhoto.src = evt.target.src;
+  popupPhoto.alt = evt.target.alt;
 }
 
 // функция закрытия попапа
-function closePopup(evt) {
-  const popup = evt.target.closest('.popup');
+function closePopup(popup) {
   popup.classList.remove('popup_active');
 }
+
+// добавление слушателей на кнопку закрытия попапов
+closeButtons.forEach(function (button) {
+  const popup = button.closest('.popup')
+  button.addEventListener('click', function(evt) {closePopup(popup)});
+})
 
 // функция изменения данных профиля пользователя
 function changeName(evt) {
   evt.preventDefault();
   currentName.textContent = fieldName.value;
   currentDescription.textContent = fieldDescription.value;
-  closePopup(evt);
+  closePopup(popupEdit);
 }
 
-// добавление слушателей на кнопку закрытия попапов
-closeButtons.forEach(function (button) {
-  button.addEventListener('click', closePopup);
-})
-
-editButton.addEventListener('click', function(evt) {openPopup(popupEdit, evt)});
-addButton.addEventListener('click', function(evt) {openPopup(popupAdd, evt)});
+editButton.addEventListener('click', openProfilePopup);
+addButton.addEventListener('click', openAddCardPopup);
 
 editForm.addEventListener('submit', changeName);
 addForm.addEventListener('submit', addNewCard);

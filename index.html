@@ -38,8 +38,8 @@
       <div class="popup__container">
         <h2 class="popup__title">Редактировать профиль</h2>
         <form class="form" name="popupEditForm">
-          <input required class="form__input-field" type="text" name="name" id="profileName">
-          <input required class="form__input-field" type="text" name="description" id="profileDescription">
+          <input required class="form__input-field" type="text" name="name" id="profileName" placeholder="Имя">
+          <input required class="form__input-field" type="text" name="description" id="profileDescription" placeholder="О себе">
           <button class="form__submit-button" type="submit">Сохранить</button>
         </form>
       </div>
@@ -52,7 +52,7 @@
         <h2 class="popup__title">Новое место</h2>
         <form class="form" name="popupAddCardForm">
           <input required class="form__input-field" type="text" name="name" id="placeTitle" placeholder="Название">
-          <input required class="form__input-field" type="text" name="description" id="placeLink" placeholder="Ссылка на картинку">
+          <input required class="form__input-field" type="url" name="description" id="placeLink" placeholder="Ссылка на картинку">
           <button class="form__submit-button" type="submit">Сохранить</button>
         </form>
       </div>
