@@ -35,6 +35,9 @@ const editButton = document.querySelector('.profile__edit-button');
 // кнопка добавления нового элемента
 const addButton = document.querySelector('.profile__add-button');
 
+// попапы
+const popups = document.querySelectorAll('.popup');
+
 // попап редактирования
 const popupEdit = document.querySelector('#profileForm');
 // форма редактирования
@@ -106,6 +109,7 @@ function addLike(evt) {
 // функция открытия попапа
 function openPopup(popup){
   popup.classList.add('popup_active');
+  document.addEventListener('keydown', function (evt) {closeByEsc(evt, popup)})
 }
 
 // функция открытия попапа добавления нового элемента
@@ -131,6 +135,21 @@ function openPhotoViewPopup(evt){
 // функция закрытия попапа
 function closePopup(popup) {
   popup.classList.remove('popup_active');
+  document.removeEventListener('keydown', function (evt) {closeByEsc(evt, popup)})
+}
+
+// функция закрытия попапа по клику на оверлей
+function closeOverlay(evt, popup){
+  if (evt.target===popup) {
+    closePopup(popup)
+  }
+}
+
+// функция закрытия попапа по esc
+function closeByEsc(evt, popup) {
+  if (evt.key === 'Escape') {
+    closePopup(popup);
+  }
 }
 
 // функция изменения данных профиля пользователя
@@ -146,10 +165,17 @@ initialCards.forEach(function (element) {
   addCard(elementsContainer, createCard(element.name, element.link));
 })
 
+// добавление слушателей закрытия на попапы
+popups.forEach(function (popup){
+  popup.addEventListener('click', function (evt) {closeOverlay(evt, popup)})
+})
+
+
 // добавление слушателей на кнопку закрытия попапов
 closeButtons.forEach(function (button) {
   const popup = button.closest('.popup')
   button.addEventListener('click', function(evt) {closePopup(popup)});
+  button.addEventListener('keydown', function (evt) {closeByEsc(evt, popup)})
 })
 
 editButton.addEventListener('click', openProfilePopup);
@@ -157,3 +183,4 @@ addButton.addEventListener('click', openAddCardPopup);
 
 editForm.addEventListener('submit', changeName);
 addForm.addEventListener('submit', addNewCard);
+
