@@ -1,18 +1,11 @@
 .form__input-field {
   border: none;
-  width: 358px;
   border-bottom: 1px solid rgb(42, 44, 47, .2);
-  margin-top: 25px;
-  padding-bottom: 13px;
+  padding-bottom: 12px;
   font-size: 14px;
   line-height: 17px;
   font-weight: 400;
   color: #000000;
-
-}
-
-.form__input-field:first-of-type{
-  margin-top: 49px;
 }
 
 .form__input-field:focus{
@@ -20,11 +13,3 @@
   background-color: transparent;
 }
 
-@media screen and (max-width: 650px)  {
-  .form__input-field {
-    width: 238px;
-  }
-  .form__input-field:first-of-type{
-    margin-top: 75px;
-  }
-}

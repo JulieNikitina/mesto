@@ -1,31 +1,3 @@
-// исходный массив элементов
-const initialCards = [
-  {
-    name: 'Аршан',
-    link: './images/elements/elements-arshan.JPG'
-  },
-  {
-    name: 'Большая Байкальская Тропа',
-    link: './images/elements/elements-bbt.JPG'
-  },
-  {
-    name: 'Мамай',
-    link: './images/elements/elements-mamay.JPG'
-  },
-  {
-    name: 'Тажеранские степи',
-    link: './images/elements/elements-tazherany.JPG'
-  },
-  {
-    name: 'Бухта Ая',
-    link: './images/elements/elements-aya.JPG'
-  },
-  {
-    name: 'Ольхон',
-    link: './images/elements/elements-olkhon.JPG'
-  },
-];
-
 // контейнер с карточками
 const elementsContainer = document.querySelector('.elements');
 // шаблон элемента-карточки
@@ -46,16 +18,16 @@ const editForm = popupEdit.querySelector('.form');
 const currentName = document.querySelector('.profile__name');
 const currentDescription = document.querySelector('.profile__description');
 // поля формы редактирования профиля
-const fieldName = editForm.querySelector('#profileName');
-const fieldDescription = editForm.querySelector('#profileDescription');
+const fieldName = editForm.querySelector('#name-input');
+const fieldDescription = editForm.querySelector('#description-input');
 
 // попап добавления
 const popupAdd = document.querySelector('#addCardForm');
 // форма добавления
 const addForm = popupAdd.querySelector('.form')
 // поля формы добавления элемента
-const fieldTitle = addForm.querySelector('#placeTitle');
-const fieldLink = addForm.querySelector('#placeLink');
+const fieldTitle = addForm.querySelector('#title-input');
+const fieldLink = addForm.querySelector('#url-input');
 
 // попап просмотра фото
 const popupPhotoView = document.querySelector('#viewPhoto');
@@ -115,13 +87,22 @@ function openPopup(popup){
 // функция открытия попапа добавления нового элемента
 function openAddCardPopup(){
   openPopup(popupAdd);
+  validateOpenPopup(popupAdd, currentParams);
 }
 
-//функция открытия попапа редактирования профиля
+// функция открытия попапа редактирования профиля
 function openProfilePopup(){
   openPopup(popupEdit)
   fieldName.value = currentName.textContent;
   fieldDescription.value = currentDescription.textContent;
+  validateOpenPopup(popupEdit, currentParams)
+}
+
+// функция валидации открываемого попапа
+function validateOpenPopup(popup, validationParam){
+  const inputList = Array.from(popup.querySelectorAll(validationParam.inputSelector));
+  const submitButton = popup.querySelector(validationParam.submitButtonSelector)
+  toggleButtonState(inputList,submitButton, validationParam.inactiveButtonClass);
 }
 
 // функция открытия попапа просмотра фото
@@ -160,16 +141,10 @@ function changeName(evt) {
   closePopup(popupEdit);
 }
 
-//заполнение страницы исходным массивом элементов
-initialCards.forEach(function (element) {
-  addCard(elementsContainer, createCard(element.name, element.link));
-})
-
 // добавление слушателей закрытия на попапы
 popups.forEach(function (popup){
   popup.addEventListener('click', function (evt) {closeOverlay(evt, popup)})
 })
-
 
 // добавление слушателей на кнопку закрытия попапов
 closeButtons.forEach(function (button) {

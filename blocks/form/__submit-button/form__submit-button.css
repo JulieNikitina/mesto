@@ -10,7 +10,7 @@
   border: none;
   transition: opacity 0.2s ease-out;
   cursor: pointer;
-  margin: 42px auto 37px auto;
+  margin: 27px auto 37px auto;
 }
 
 .form__submit-button:hover{
