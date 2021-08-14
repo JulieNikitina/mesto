@@ -64,9 +64,6 @@ function toggleButtonState(inputList, buttonElement, buttonInactiveClass) {
 function enableValidation(validationParams) {
   const formList = Array.from(document.querySelectorAll(validationParams.formSelector));
   formList.forEach((formElement) => {
-    formElement.addEventListener('submit', (evt) => {
-      evt.preventDefault();
-    });
     setEventListeners(formElement, validationParams);
   });
 };

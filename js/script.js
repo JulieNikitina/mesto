@@ -81,12 +81,14 @@ function addLike(evt) {
 // функция открытия попапа
 function openPopup(popup){
   popup.classList.add('popup_active');
-  document.addEventListener('keydown', function (evt) {closeByEsc(evt, popup)})
+  document.addEventListener('keydown', closeByEsc);
 }
 
 // функция открытия попапа добавления нового элемента
 function openAddCardPopup(){
   openPopup(popupAdd);
+  fieldTitle.value = "";
+  fieldLink.value = "";
   validateOpenPopup(popupAdd, currentParams);
 }
 
@@ -95,13 +97,16 @@ function openProfilePopup(){
   openPopup(popupEdit)
   fieldName.value = currentName.textContent;
   fieldDescription.value = currentDescription.textContent;
-  validateOpenPopup(popupEdit, currentParams)
+  validateOpenPopup(popupEdit, currentParams);
 }
 
 // функция валидации открываемого попапа
 function validateOpenPopup(popup, validationParam){
   const inputList = Array.from(popup.querySelectorAll(validationParam.inputSelector));
-  const submitButton = popup.querySelector(validationParam.submitButtonSelector)
+  const submitButton = popup.querySelector(validationParam.submitButtonSelector);
+  inputList.forEach(function (inputElement){
+    hideInputError(popup, inputElement, currentParams);
+  })
   toggleButtonState(inputList,submitButton, validationParam.inactiveButtonClass);
 }
 
@@ -116,7 +121,7 @@ function openPhotoViewPopup(evt){
 // функция закрытия попапа
 function closePopup(popup) {
   popup.classList.remove('popup_active');
-  document.removeEventListener('keydown', function (evt) {closeByEsc(evt, popup)})
+  document.removeEventListener('keydown',closeByEsc)
 }
 
 // функция закрытия попапа по клику на оверлей
@@ -127,8 +132,9 @@ function closeOverlay(evt, popup){
 }
 
 // функция закрытия попапа по esc
-function closeByEsc(evt, popup) {
+function closeByEsc(evt) {
   if (evt.key === 'Escape') {
+    const popup = document.querySelector('.popup_active')
     closePopup(popup);
   }
 }
@@ -150,7 +156,6 @@ popups.forEach(function (popup){
 closeButtons.forEach(function (button) {
   const popup = button.closest('.popup')
   button.addEventListener('click', function(evt) {closePopup(popup)});
-  button.addEventListener('keydown', function (evt) {closeByEsc(evt, popup)})
 })
 
 editButton.addEventListener('click', openProfilePopup);
