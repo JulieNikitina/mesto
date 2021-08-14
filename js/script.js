@@ -48,7 +48,7 @@ function createCard(name, link){
   elementCard.querySelector('.element__title').textContent = name;
   cardPhoto.src = link;
   cardPhoto.alt = name;
-  cardPhoto.addEventListener('click', openPhotoViewPopup);
+  cardPhoto.addEventListener('click', function(evt) {openPhotoViewPopup(name, link)});
   elementCard.querySelector('.element__basket-button').addEventListener('click', deleteCard);
   elementCard.querySelector('.element__like-button').addEventListener('click', addLike);
   return elementCard;
@@ -111,11 +111,11 @@ function validateOpenPopup(popup, validationParam){
 }
 
 // функция открытия попапа просмотра фото
-function openPhotoViewPopup(evt){
+function openPhotoViewPopup(name, link){
   openPopup(popupPhotoView)
-  popupPhotoCapture.textContent = evt.target.alt;
-  popupPhoto.src = evt.target.src;
-  popupPhoto.alt = evt.target.alt;
+  popupPhotoCapture.textContent = name;
+  popupPhoto.src = link;
+  popupPhoto.alt = name;
 }
 
 // функция закрытия попапа
@@ -125,9 +125,9 @@ function closePopup(popup) {
 }
 
 // функция закрытия попапа по клику на оверлей
-function closeOverlay(evt, popup){
-  if (evt.target===popup) {
-    closePopup(popup)
+function closeOverlay(evt){
+  if (evt.target===evt.currentTarget) {
+    closePopup(evt.currentTarget)
   }
 }
 
@@ -149,7 +149,7 @@ function changeName(evt) {
 
 // добавление слушателей закрытия на попапы
 popups.forEach(function (popup){
-  popup.addEventListener('click', function (evt) {closeOverlay(evt, popup)})
+  popup.addEventListener('click', closeOverlay)
 })
 
 // добавление слушателей на кнопку закрытия попапов
