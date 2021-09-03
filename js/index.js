@@ -1,3 +1,6 @@
+export { openPopup, popupPhotoView, popupPhotoCapture, popupPhoto }
+import {Card} from "./Card.js";
+
 // контейнер с карточками
 const elementsContainer = document.querySelector('.elements');
 // шаблон элемента-карточки
@@ -41,42 +44,62 @@ const closeButtons = document.querySelectorAll('.popup__close-button');
 // шаблон карточки
 const templateCard = elementTemplate.querySelector('.element');
 
-// функция создания карточки
-function createCard(name, link){
-  const elementCard = templateCard.cloneNode(true);
-  const cardPhoto = elementCard.querySelector('.element__photo')
-  elementCard.querySelector('.element__title').textContent = name;
-  cardPhoto.src = link;
-  cardPhoto.alt = name;
-  cardPhoto.addEventListener('click', function(evt) {openPhotoViewPopup(name, link)});
-  elementCard.querySelector('.element__basket-button').addEventListener('click', deleteCard);
-  elementCard.querySelector('.element__like-button').addEventListener('click', addLike);
-  return elementCard;
-}
+// исходный массив карточек
+const initialCards = [
+  {
+    name: 'Аршан',
+    link: './images/elements/elements-arshan.JPG'
+  },
+  {
+    name: 'Большая Байкальская Тропа',
+    link: './images/elements/elements-bbt.JPG'
+  },
+  {
+    name: 'Мамай',
+    link: './images/elements/elements-mamay.JPG'
+  },
+  {
+    name: 'Тажеранские степи',
+    link: './images/elements/elements-tazherany.JPG'
+  },
+  {
+    name: 'Бухта Ая',
+    link: './images/elements/elements-aya.JPG'
+  },
+  {
+    name: 'Ольхон',
+    link: './images/elements/elements-olkhon.JPG'
+  },
+];
 
 // функция добавления элемента в контейнер
-function addCard(container, element){
-  container.prepend(element);
+// function addCard(container, element){
+//   container.prepend(element);
+// }
+
+function addCard(element){
+  const card = new Card(element, '#element-template');
+  elementsContainer.prepend(card.generateCard());
 }
+
+// заполнение страницы исходным массивом
+initialCards.forEach(function (element) {
+  // const card = new Card(element, '#element-template');
+  // addCard(elementsContainer, card.generateCard());
+  addCard(element);
+
+})
 
 // функция добавления новой карточки на страницу
 function addNewCard(evt) {
   evt.preventDefault();
-  addCard(elementsContainer, createCard(fieldTitle.value, fieldLink.value));
+  const element = {name: fieldTitle.value, link: fieldLink.value};
+  // const card = new Card(data, '#element-template')
+  // addCard(elementsContainer, card.generateCard());
+  addCard(element);
   closePopup(popupAdd);
   addForm.reset()
-}
-
-// функция удаления элемента со страницы
-function deleteCard(evt) {
-  const targetCard = evt.target.closest('.element');
-  targetCard.remove();
-}
-
-// функция добавления/удаления лайка
-function addLike(evt) {
-  evt.target.classList.toggle('element__like-button_active');
-}
+};
 
 // функция открытия попапа
 function openPopup(popup){
@@ -109,15 +132,6 @@ function validateOpenPopup(popup, validationParam){
   })
   toggleButtonState(inputList,submitButton, validationParam.inactiveButtonClass);
 }
-
-// функция открытия попапа просмотра фото
-function openPhotoViewPopup(name, link){
-  openPopup(popupPhotoView)
-  popupPhotoCapture.textContent = name;
-  popupPhoto.src = link;
-  popupPhoto.alt = name;
-}
-
 // функция закрытия попапа
 function closePopup(popup) {
   popup.classList.remove('popup_active');
@@ -163,4 +177,5 @@ addButton.addEventListener('click', openAddCardPopup);
 
 editForm.addEventListener('submit', changeName);
 addForm.addEventListener('submit', addNewCard);
+
 
