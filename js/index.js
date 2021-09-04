@@ -127,7 +127,7 @@ function openAddCardPopup(){
   fieldTitle.value = "";
   fieldLink.value = "";
   const formValidator = new FormValidator(popupAdd, currentParams)
-  formValidator._validateOpenPopup()
+  formValidator.validateOpenPopup()
 }
 
 // функция открытия попапа редактирования профиля
@@ -136,7 +136,7 @@ function openProfilePopup(){
   fieldName.value = currentName.textContent;
   fieldDescription.value = currentDescription.textContent;
   const formValidator = new FormValidator(popupEdit, currentParams)
-  formValidator._validateOpenPopup()
+  formValidator.validateOpenPopup()
 }
 
 // функция закрытия попапа по клику на оверлей
