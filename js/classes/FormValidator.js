@@ -58,7 +58,7 @@ export class FormValidator {
   };
 
   // функция валидации открываемого попапа
-  validateOpenPopup() {
+  resetPopupValidationState() {
     const inputList = Array.from(this._formElement.querySelectorAll(this._validationParams.inputSelector));
     const submitButton = this._formElement.querySelector(this._validationParams.submitButtonSelector);
     inputList.forEach((inputElement) => {
