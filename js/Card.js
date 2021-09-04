@@ -1,11 +1,10 @@
-export { Card }
 import {openPopup, popupPhotoView, popupPhotoCapture, popupPhoto} from "./index.js";
 
-class Card {
+export class Card {
   constructor(data, cardSelector) {
     this._name = data.name;
     this._imageLink = data.link;
-    this._cardSelector = cardSelector
+    this._cardSelector = cardSelector;
   }
   _getTemplate() {
     const cardElement = document
