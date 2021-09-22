@@ -1,10 +1,9 @@
-import {openPopup, popupPhotoView, popupPhotoCapture, popupPhoto} from "../popups.js";
-
 export class Card {
-  constructor(data, cardSelector) {
+  constructor({data, handleCardClick}, cardSelector) {
     this._name = data.name;
     this._imageLink = data.link;
     this._cardSelector = cardSelector;
+    this._handleCardClick = handleCardClick;
   }
   _getTemplate() {
     const cardElement = document
@@ -15,10 +14,7 @@ export class Card {
     return cardElement;
   }
   _openPhotoViewPopup(){
-    openPopup(popupPhotoView)
-    popupPhotoCapture.textContent = this._name;
-    popupPhoto.src = this._imageLink;
-    popupPhoto.alt = this._name;
+    this._handleCardClick(this._name, this._imageLink)
   }
   _deleteCard() {
     this._element.remove();
