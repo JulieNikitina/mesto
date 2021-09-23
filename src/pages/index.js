@@ -1,9 +1,9 @@
-import Card from "../js/components/Card.js";
-import FormValidator from "../js/components/FormValidator.js";
-import PopupWithImage from "../js/components/PopupWithImage.js";
-import PopupWithForm from "../js/components/PopupWithForm.js";
-import Section from "../js/components/Section.js";
-import UserInfo from "../js/components/UserInfo.js";
+import Card from "../components/Card.js";
+import FormValidator from "../components/FormValidator.js";
+import PopupWithImage from "../components/PopupWithImage.js";
+import PopupWithForm from "../components/PopupWithForm.js";
+import Section from "../components/Section.js";
+import UserInfo from "../components/UserInfo.js";
 
 import {
   addButton,
@@ -16,7 +16,9 @@ import {
   userInfoSelectors,
   formAddCard,
   formEditProfile,
-} from "../js/utils/constants.js";
+} from "../utils/constants.js";
+
+import "./index.css";
 
 // создание экземпляра класса информации о пользователе
 const userInfo = new UserInfo(userInfoSelectors);

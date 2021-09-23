@@ -5,7 +5,9 @@ export default class PopupWithForm extends Popup {
     super(popupSelector);
     this._validator = validator;
     this._handleFormSubmit = handleFormSubmit;
+    this._form = this._popup.querySelector('.form');
   }
+
   _getInputValues() {
     const inputList = Array.from(this._validator._formElement.querySelectorAll(this._validator._validationParams.inputSelector));
     this._element = {};

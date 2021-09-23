@@ -1,28 +1,35 @@
 // исходный массив карточек
+const arshan = new URL('../images/elements/elements-arshan.JPG', import.meta.url);
+const bbt = new URL('../images/elements/elements-bbt.JPG', import.meta.url);
+const mamay = new URL('../images/elements/elements-mamay.JPG', import.meta.url)
+const tazherany = new URL('../images/elements/elements-tazherany.JPG', import.meta.url)
+const aya = new URL('../images/elements/elements-aya.JPG', import.meta.url)
+const olkhon = new URL('../images/elements/elements-olkhon.JPG', import.meta.url)
+
 export const initialCards = [
   {
     name: 'Аршан',
-    link: './images/elements/elements-arshan.JPG'
+    link: arshan
   },
   {
     name: 'Большая Байкальская Тропа',
-    link: './images/elements/elements-bbt.JPG'
+    link: bbt
   },
   {
     name: 'Мамай',
-    link: './images/elements/elements-mamay.JPG'
+    link: mamay
   },
   {
     name: 'Тажеранские степи',
-    link: './images/elements/elements-tazherany.JPG'
+    link: tazherany
   },
   {
     name: 'Бухта Ая',
-    link: './images/elements/elements-aya.JPG'
+    link: aya
   },
   {
     name: 'Ольхон',
-    link: './images/elements/elements-olkhon.JPG'
+    link: olkhon
   },
 ];
 

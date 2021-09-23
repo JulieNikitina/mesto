@@ -3,18 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="./pages/index.css">
   <title>Mesto</title>
 </head>
 <body class="body">
   <div class="page">
     <header class="header">
-      <img class="header__logo" src="./images/header/header-logo.svg" alt="Лого">
+      <img class="header__logo" src='<%=require("./images/header/header-logo.svg")%>' alt="Лого">
     </header>
     <main>
       <section class="profile">
         <div class="profile__user-block">
-          <img class="profile__photo" src="./images/profile/profile-image.jpg" alt="Аватар">
+          <img class="profile__photo" src='<%=require("./images/profile/profile-image.jpg")%>' alt="Аватар">
           <div class="profile__text-info">
             <h1 class="profile__name">Юля Никитина</h1>
             <button class="profile__edit-button" title="Редактировать профиль" aria-label="Редактировать профиль">
@@ -87,6 +86,5 @@
       </div>
     </article>
   </template>
-  <script type="module" src="pages/index.js"></script>
 </body>
 </html>
