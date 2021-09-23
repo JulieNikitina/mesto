@@ -1,4 +1,10 @@
-import {Card} from "./classes/Card.js";
+import Card from "../js/components/Card.js";
+import FormValidator from "../js/components/FormValidator.js";
+import PopupWithImage from "../js/components/PopupWithImage.js";
+import PopupWithForm from "../js/components/PopupWithForm.js";
+import Section from "../js/components/Section.js";
+import UserInfo from "../js/components/UserInfo.js";
+
 import {
   addButton,
   CARD_TEMPLATE_SELECTOR,
@@ -7,19 +13,10 @@ import {
   FieldDescription,
   FieldName,
   initialCards,
-  userInfoSelectors
-} from "./utils/constants.js";
-import Section from "./classes/Section.js";
-import PopupWithForm from "./classes/PopupWithForm.js";
-
-import {
+  userInfoSelectors,
   formAddCard,
   formEditProfile,
-
-} from "./utils/constants.js";
-import {FormValidator} from "./classes/FormValidator.js";
-import PopupWithImage from "./classes/PopupWithImage.js";
-import UserInfo from "./classes/UserInfo.js";
+} from "../js/utils/constants.js";
 
 // создание экземпляра класса информации о пользователе
 const userInfo = new UserInfo(userInfoSelectors);
@@ -69,7 +66,7 @@ const popupAddCard = new PopupWithForm({
   }
 }, '#addCardForm');
 
-// попап просмотра фото
+// создание попапа просмотра фото
 const popupPhotoView = new PopupWithImage('#viewPhoto');
 
 // слушатель на кнопке редактирования профиля
@@ -89,4 +86,3 @@ cardListSection.renderItems();
 popupPhotoView.setEventListeners();
 popupEditProfile.setEventListeners();
 popupAddCard.setEventListeners();
-

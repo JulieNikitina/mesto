@@ -1,4 +1,4 @@
-import {Popup} from "./Popup.js";
+import Popup from "./Popup.js";
 
 export default class PopupWithForm extends Popup {
   constructor({validator, handleFormSubmit}, popupSelector) {
@@ -26,9 +26,12 @@ export default class PopupWithForm extends Popup {
     super.setEventListeners();
   }
   close() {
-    this._validator._formElement.reset();
-    this._validator.resetPopupValidationState()
+    this._form.reset();
     super.close();
   }
-
+  open() {
+    this._form.reset();
+    this._validator.resetPopupValidationState()
+    super.open();
+  }
 }

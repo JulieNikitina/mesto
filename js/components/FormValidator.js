@@ -1,10 +1,10 @@
-export class FormValidator {
+export default class FormValidator {
   constructor(formElement, validationParams) {
     this._validationParams = validationParams;
     this._formElement = formElement;
   }
 
-// функция проверки валидации и вызова отображения/скрытия ошибки
+// метод проверки валидации и вызова отображения/скрытия ошибки
   _isValid(inputElement) {
     if (!inputElement.validity.valid) {
       this._showInputError(inputElement, inputElement.validationMessage);
@@ -13,7 +13,7 @@ export class FormValidator {
     }
   };
 
-// функция отображения ошибки валидации
+// метод отображения ошибки валидации
   _showInputError(inputElement, errorMessage) {
     const errorElement = this._formElement.querySelector(`.${inputElement.id}-error`);
     inputElement.classList.add(this._validationParams.inputErrorClass);
@@ -21,7 +21,7 @@ export class FormValidator {
     errorElement.classList.add(this._validationParams.errorClass);
   };
 
-// функция скрытия ошибки валидации
+// метод скрытия ошибки валидации
   _hideInputError(inputElement) {
     const errorElement = this._formElement.querySelector(`.${inputElement.id}-error`);
     inputElement.classList.remove(this._validationParams.inputErrorClass);
@@ -29,7 +29,7 @@ export class FormValidator {
     errorElement.textContent = '';
   };
 
-// функция добавления слушателей и вызова функции проверки полей
+// метод добавления слушателей и вызова функции проверки полей
   _setEventListeners() {
     const inputList = Array.from(this._formElement.querySelectorAll(this._validationParams.inputSelector));
     const buttonElement = this._formElement.querySelector(this._validationParams.submitButtonSelector);
@@ -46,7 +46,7 @@ export class FormValidator {
     return inputList.some(input => !input.validity.valid)
   };
 
-// функция изменения состояни активности кнопки сохранения формы
+// метод изменения состояни активности кнопки сохранения формы
   _toggleButtonState(inputList, buttonElement) {
     if (this._hasInvalidInput(inputList)) {
       buttonElement.classList.add(this._validationParams.inactiveButtonClass);
@@ -57,7 +57,7 @@ export class FormValidator {
     }
   };
 
-  // функция валидации открываемого попапа
+  // метод валидации открываемого попапа
   resetPopupValidationState() {
     const inputList = Array.from(this._formElement.querySelectorAll(this._validationParams.inputSelector));
     const submitButton = this._formElement.querySelector(this._validationParams.submitButtonSelector);
@@ -67,9 +67,8 @@ export class FormValidator {
     this._toggleButtonState(inputList,submitButton);
   }
 
-// функция включения валидации
+// метод включения валидации
   enableValidation() {
     this._setEventListeners();
   };
-
 }
