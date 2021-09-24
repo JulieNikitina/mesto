@@ -59,9 +59,15 @@ export const addButton = document.querySelector('.profile__add-button');
 export const userInfoSelectors = {nameSelector:'.profile__name', descriptionSelector:'.profile__description'};
 
 // поля формы редактирования профиля
-export const FieldName = document.querySelector('#name-input');
-export const FieldDescription = document.querySelector('#description-input');
+export const fieldName = document.querySelector('#name-input');
+export const fieldDescription = document.querySelector('#description-input');
 
-// селектор шаблона карточки
+// селекторы
+export const ELEMENTS_CONTAINER_SELECTOR = '.elements'
 export const CARD_TEMPLATE_SELECTOR = '#element-template'
+export const POPUP_WITH_PHOTO_SELECTOR = '#viewPhoto'
+export const POPUP_EDIT_FORM_SELECTOR = '#profileForm'
+export const POPUP_ADD_CARD_FORM_SELECTOR = '#addCardForm'
+export const POPUP_PHOTO_SELECTOR = '.popup__photo'
+export const POPUP_PHOTO_CAPTION_SELECTOR = '.popup__photo-caption'
 

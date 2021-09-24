@@ -2,6 +2,8 @@ export default class FormValidator {
   constructor(formElement, validationParams) {
     this._validationParams = validationParams;
     this._formElement = formElement;
+    this._inputList = Array.from(this._formElement.querySelectorAll(this._validationParams.inputSelector));
+    this._submitButton = this._formElement.querySelector(this._validationParams.submitButtonSelector);
   }
 
 // метод проверки валидации и вызова отображения/скрытия ошибки
@@ -31,12 +33,11 @@ export default class FormValidator {
 
 // метод добавления слушателей и вызова функции проверки полей
   _setEventListeners() {
-    const inputList = Array.from(this._formElement.querySelectorAll(this._validationParams.inputSelector));
-    const buttonElement = this._formElement.querySelector(this._validationParams.submitButtonSelector);
-    inputList.forEach((inputElement) => {
+    // const buttonElement = this._formElement.querySelector(this._validationParams.submitButtonSelector);
+    this._inputList.forEach((inputElement) => {
       inputElement.addEventListener('input', () => {
         this._isValid(inputElement);
-        this._toggleButtonState(inputList, buttonElement, this._validationParams.inactiveButtonClass);
+        this._toggleButtonState(this._inputList, this._submitButton, this._validationParams.inactiveButtonClass);
       });
     });
   };
@@ -59,12 +60,10 @@ export default class FormValidator {
 
   // метод валидации открываемого попапа
   resetPopupValidationState() {
-    const inputList = Array.from(this._formElement.querySelectorAll(this._validationParams.inputSelector));
-    const submitButton = this._formElement.querySelector(this._validationParams.submitButtonSelector);
-    inputList.forEach((inputElement) => {
+    this._inputList.forEach((inputElement) => {
       this._hideInputError(inputElement);
     })
-    this._toggleButtonState(inputList,submitButton);
+    this._toggleButtonState(this._inputList,this._submitButton);
   }
 
 // метод включения валидации

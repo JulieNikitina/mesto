@@ -24,11 +24,9 @@ export default class PopupWithForm extends Popup {
       this._form.reset();
       this.close();
     });
-    this._popupCloseButton.addEventListener('click', () => {this.close()});
     super.setEventListeners();
   }
   close() {
-    this._form.reset();
     super.close();
   }
   open() {

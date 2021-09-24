@@ -1,4 +1,3 @@
-import Card from "../components/Card.js";
 import FormValidator from "../components/FormValidator.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import PopupWithForm from "../components/PopupWithForm.js";
@@ -7,16 +6,23 @@ import UserInfo from "../components/UserInfo.js";
 
 import {
   addButton,
-  CARD_TEMPLATE_SELECTOR,
   currentParams,
   editButton,
-  FieldDescription,
-  FieldName,
+  fieldDescription,
+  fieldName,
   initialCards,
   userInfoSelectors,
   formAddCard,
   formEditProfile,
+  POPUP_PHOTO_SELECTOR,
+  POPUP_PHOTO_CAPTION_SELECTOR,
+  POPUP_WITH_PHOTO_SELECTOR,
+  ELEMENTS_CONTAINER_SELECTOR,
+  POPUP_EDIT_FORM_SELECTOR,
+  POPUP_ADD_CARD_FORM_SELECTOR,
 } from "../utils/constants.js";
+
+import {createCard} from "../utils/utils.js";
 
 import "./index.css";
 
@@ -27,16 +33,11 @@ const userInfo = new UserInfo(userInfoSelectors);
 const cardListSection = new Section({
   items: initialCards,
   renderer: (item) => {
-    const card = new Card({
-      data: item,
-      handleCardClick: (name, link) => {
-        popupPhotoView.open(name, link)
-      }
-    }, CARD_TEMPLATE_SELECTOR);
+    const card = createCard(item, popupPhotoView)
     const cardElement = card.generateCard();
     cardListSection.addItem(cardElement)
   }
-}, '.elements');
+}, ELEMENTS_CONTAINER_SELECTOR);
 
 // создание объектов валидатора
 const formEditProfileValidator = new FormValidator(formEditProfile, currentParams);
@@ -51,32 +52,31 @@ const popupEditProfile = new PopupWithForm({
   handleFormSubmit: (formData) => {
     userInfo.setUserInfo(formData.name, formData.description)
   }
-}, '#profileForm');
+}, POPUP_EDIT_FORM_SELECTOR);
 
 // создание попапа добавления нового элемента
 const popupAddCard = new PopupWithForm({
   validator: formAddCardValidator,
   handleFormSubmit: (formData) => {
-    const card = new Card({
-      data: formData,
-      handleCardClick: (name, link) => {
-        popupPhotoView.open(name, link)
-      }
-    }, CARD_TEMPLATE_SELECTOR);
+    const card = createCard(formData, popupPhotoView)
     const cardElement = card.generateCard();
     cardListSection.addItem(cardElement);
   }
-}, '#addCardForm');
+}, POPUP_ADD_CARD_FORM_SELECTOR);
 
 // создание попапа просмотра фото
-const popupPhotoView = new PopupWithImage('#viewPhoto');
+const popupPhotoView = new PopupWithImage(
+  POPUP_WITH_PHOTO_SELECTOR,
+  POPUP_PHOTO_SELECTOR,
+  POPUP_PHOTO_CAPTION_SELECTOR
+);
 
 // слушатель на кнопке редактирования профиля
 editButton.addEventListener('click', () => {
   popupEditProfile.open();
   const info = userInfo.getUserInfo();
-  FieldName.value = info.name
-  FieldDescription.value = info.description;
+  fieldName.value = info.name
+  fieldDescription.value = info.description;
 });
 
 // слушатель на кнопке добавления новой карточки
