@@ -1,0 +1,23 @@
+.profile__photo-overlay {
+  background-color: rgb(42, 44, 47, .8);
+  transition: opacity 0.2s ease-out;
+  box-sizing: border-box;
+  border-radius: 50%;
+  height: 120px;
+  width: 120px;
+  overflow: hidden;
+  background-image: url(../../../images/profile/edit-profile-photo.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+  cursor: pointer;
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+
+}
+.profile__photo-overlay:hover{
+  display: block;
+}
+
+

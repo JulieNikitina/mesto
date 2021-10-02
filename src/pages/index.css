@@ -32,7 +32,10 @@
 @import url(../blocks/profile/__description/profile__description.css);
 @import url(../blocks/profile/__edit-button/profile__edit-button.css);
 @import url(../blocks/profile/__name/profile__name.css);
+@import url(../blocks/profile/__photo-block/profile__photo-block.css);
 @import url(../blocks/profile/__photo/profile__photo.css);
+@import url(../blocks/profile/__photo-overlay/profile__photo-overlay.css);
+
 @import url(../blocks/profile/__text-info/profile__text-info.css);
 @import url(../blocks/profile/__user-block/profile__user-block.css);
 

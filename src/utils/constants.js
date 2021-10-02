@@ -42,8 +42,10 @@ export const currentParams = {
   inputErrorClass: 'form__input-field_error',
   errorClass: 'form__input-error_active'
 }
+// форма редактирования фото профиля
+export const formEditPhotoProfile = document.querySelector('#profileImageForm').querySelector('.form');
 
-// форма редактирования
+// форма редактирования профиля
 export const formEditProfile = document.querySelector('#profileForm').querySelector('.form');
 
 // форма добавления
@@ -67,7 +69,13 @@ export const ELEMENTS_CONTAINER_SELECTOR = '.elements'
 export const CARD_TEMPLATE_SELECTOR = '#element-template'
 export const POPUP_WITH_PHOTO_SELECTOR = '#viewPhoto'
 export const POPUP_EDIT_FORM_SELECTOR = '#profileForm'
+export const POPUP_PHOTO_PROFILE_SELECTOR = '#profileImageForm'
+
 export const POPUP_ADD_CARD_FORM_SELECTOR = '#addCardForm'
 export const POPUP_PHOTO_SELECTOR = '.popup__photo'
 export const POPUP_PHOTO_CAPTION_SELECTOR = '.popup__photo-caption'
 
+// аватар
+export const profilePhoto = document.querySelector('.profile__photo');
+//оверлей аватара
+export const profilePhotoOverlay = document.querySelector('.profile__photo-block');

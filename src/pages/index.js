@@ -19,7 +19,7 @@ import {
   POPUP_WITH_PHOTO_SELECTOR,
   ELEMENTS_CONTAINER_SELECTOR,
   POPUP_EDIT_FORM_SELECTOR,
-  POPUP_ADD_CARD_FORM_SELECTOR,
+  POPUP_ADD_CARD_FORM_SELECTOR, profilePhoto, POPUP_PHOTO_PROFILE_SELECTOR, formEditPhotoProfile, profilePhotoOverlay,
 } from "../utils/constants.js";
 
 import {createCard} from "../utils/utils.js";
@@ -45,6 +45,17 @@ formEditProfileValidator.enableValidation()
 
 const formAddCardValidator = new FormValidator(formAddCard, currentParams);
 formAddCardValidator.enableValidation()
+
+const formEditProfileImageValidator = new FormValidator(formEditPhotoProfile, currentParams);
+formEditProfileImageValidator.enableValidation()
+
+// создание попапа редактирования фото профиля
+const popupEditProfilePhoto = new PopupWithForm({
+  validator: formEditProfileImageValidator,
+  handleFormSubmit: (formData) => {
+    profilePhoto.src = formData.photo;
+  }
+}, POPUP_PHOTO_PROFILE_SELECTOR);
 
 // создание попапа редактирования профиля
 const popupEditProfile = new PopupWithForm({
@@ -84,7 +95,14 @@ addButton.addEventListener('click', () => {
   popupAddCard.open()
 });
 
+// слушатель на оверлее фото профиля
+profilePhotoOverlay.addEventListener('click', () => {
+  popupEditProfilePhoto.open()
+});
+
 cardListSection.renderItems();
 popupPhotoView.setEventListeners();
 popupEditProfile.setEventListeners();
 popupAddCard.setEventListeners();
+popupEditProfilePhoto.setEventListeners()
+

@@ -13,7 +13,10 @@
     <main>
       <section class="profile">
         <div class="profile__user-block">
-          <img class="profile__photo" src='<%=require("./images/profile/profile-image.jpg")%>' alt="Аватар">
+          <div class="profile__photo-block" title="Изменить аватар">
+            <img class="profile__photo" src='<%=require("./images/profile/profile-image.jpg")%>' alt="Аватар">
+            <div class="profile__photo-overlay"></div>
+          </div>
           <div class="profile__text-info">
             <h1 class="profile__name">Юля Никитина</h1>
             <button class="profile__edit-button" title="Редактировать профиль" aria-label="Редактировать профиль">
@@ -30,6 +33,21 @@
     <footer class="footer">
       <p class="footer__copyright">&copy; 2021 Mesto Russia</p>
     </footer>
+
+    <div class= "popup" id="profileImageForm">
+      <button class="popup__close-button" type="button">
+      </button>
+      <div class="popup__container">
+        <h2 class="popup__title">Обновить аватар</h2>
+        <form class="form" name="editProfileImageForm" novalidate>
+          <label class="form__field">
+            <input id="profile-image-url-input" required class="form__input-field" type="url" name="photo" placeholder="Ссылка на аватар">
+            <span class="profile-image-url-input-error form__input-error"></span>
+          </label>
+          <button class="form__submit-button" type="submit">Сохранить</button>
+        </form>
+      </div>
+    </div>
 
     <div class= "popup" id="profileForm">
       <button class="popup__close-button" type="button">
