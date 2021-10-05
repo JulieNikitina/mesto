@@ -4,6 +4,7 @@ export default class UserInfo {
     this._descriptionSelector = data.descriptionSelector;
     this._currentName = document.querySelector(this._nameSelector);
     this._currentDescription = document.querySelector(this._descriptionSelector);
+    this._avatar = document.querySelector('.profile__photo');
   }
 
   getUserInfo() {
@@ -11,9 +12,10 @@ export default class UserInfo {
     return this._infoObject;
   }
 
-  setUserInfo(name, description) {
+  setUserInfo(name, description, photo) {
     this._currentName.textContent = name;
     this._currentDescription.textContent = description;
+    this._avatar.src = photo
   }
 }
 
