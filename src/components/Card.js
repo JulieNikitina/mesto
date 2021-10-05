@@ -1,9 +1,10 @@
 export default class Card {
-  constructor({data, handleCardClick}, cardSelector) {
+  constructor({data, handleCardClick, handleDeleteIconClick}, cardSelector) {
     this._name = data.name;
     this._imageLink = data.link;
     this._cardSelector = cardSelector;
     this._handleCardClick = handleCardClick;
+    this._handleDeleteIconClick = handleDeleteIconClick;
   }
   _getTemplate() {
     const cardElement = document
@@ -16,6 +17,9 @@ export default class Card {
   _openPhotoViewPopup(){
     this._handleCardClick(this._name, this._imageLink)
   }
+  _handleDeletePhoto(){
+    this._handleDeleteIconClick()
+  }
   _deleteCard() {
     this._element.remove();
   }
@@ -26,8 +30,11 @@ export default class Card {
     this._photo.addEventListener('click', () => {
       this._openPhotoViewPopup();
     });
+    // this._deleteButton.addEventListener('click', () => {
+    //   this._deleteCard();
+    // });
     this._deleteButton.addEventListener('click', () => {
-      this._deleteCard();
+      this._handleDeletePhoto();
     });
     this._likeButton.addEventListener('click', () => {
       this._toggleLike();

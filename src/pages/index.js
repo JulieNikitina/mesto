@@ -10,7 +10,6 @@ import {
   editButton,
   fieldDescription,
   fieldName,
-  initialCards,
   userInfoSelectors,
   formAddCard,
   formEditProfile,
@@ -19,25 +18,52 @@ import {
   POPUP_WITH_PHOTO_SELECTOR,
   ELEMENTS_CONTAINER_SELECTOR,
   POPUP_EDIT_FORM_SELECTOR,
-  POPUP_ADD_CARD_FORM_SELECTOR, profilePhoto, POPUP_PHOTO_PROFILE_SELECTOR, formEditPhotoProfile, profilePhotoOverlay,
+  POPUP_ADD_CARD_FORM_SELECTOR,
+  profilePhoto,
+  POPUP_PHOTO_PROFILE_SELECTOR,
+  formEditPhotoProfile,
+  profilePhotoOverlay,
+  POPUP_DELETE_CARD_SELECTOR,
+  TOKEN, BASE_ROUTE,
 } from "../utils/constants.js";
 
 import {createCard} from "../utils/utils.js";
 
 import "./index.css";
+import PopupWithConfirmation from "../components/PopupConfirmation";
+import Api from "../components/Api";
 
 // создание экземпляра класса информации о пользователе
 const userInfo = new UserInfo(userInfoSelectors);
 
+// создание Api
+const api = new Api({
+  baseRoute: BASE_ROUTE,
+  headers: {
+    authorization: TOKEN,
+    'Content-Type': 'application/json'
+  }
+});
+
 // заполнение страницы исходным массивом
 const cardListSection = new Section({
-  items: initialCards,
   renderer: (item) => {
-    const card = createCard(item, popupPhotoView)
+    const card = createCard(item, popupPhotoView, popupDeleteCard)
     const cardElement = card.generateCard();
     cardListSection.addItem(cardElement)
   }
 }, ELEMENTS_CONTAINER_SELECTOR);
+
+api.getInitialCards()
+  .then((result) => {
+      cardListSection.renderItems(result)
+  }
+  )
+  .catch((err) => {
+    console.log(err); // выведем ошибку в консоль
+  });
+
+
 
 // создание объектов валидатора
 const formEditProfileValidator = new FormValidator(formEditProfile, currentParams);
@@ -69,7 +95,7 @@ const popupEditProfile = new PopupWithForm({
 const popupAddCard = new PopupWithForm({
   validator: formAddCardValidator,
   handleFormSubmit: (formData) => {
-    const card = createCard(formData, popupPhotoView)
+    const card = createCard(formData, popupPhotoView, popupDeleteCard)
     const cardElement = card.generateCard();
     cardListSection.addItem(cardElement);
   }
@@ -81,6 +107,13 @@ const popupPhotoView = new PopupWithImage(
   POPUP_PHOTO_SELECTOR,
   POPUP_PHOTO_CAPTION_SELECTOR
 );
+
+// создание попапа удаления карточки
+const popupDeleteCard = new PopupWithConfirmation({
+  handleConfirmation: () => {
+    console.log("hola")
+  }
+}, POPUP_DELETE_CARD_SELECTOR);
 
 // слушатель на кнопке редактирования профиля
 editButton.addEventListener('click', () => {
@@ -100,9 +133,10 @@ profilePhotoOverlay.addEventListener('click', () => {
   popupEditProfilePhoto.open()
 });
 
-cardListSection.renderItems();
+// cardListSection.renderItems();
 popupPhotoView.setEventListeners();
 popupEditProfile.setEventListeners();
 popupAddCard.setEventListeners();
-popupEditProfilePhoto.setEventListeners()
+popupEditProfilePhoto.setEventListeners();
+popupDeleteCard.setEventListeners();
 

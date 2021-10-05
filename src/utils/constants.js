@@ -1,38 +1,3 @@
-// исходный массив карточек
-const arshan = new URL('../images/elements/elements-arshan.JPG', import.meta.url);
-const bbt = new URL('../images/elements/elements-bbt.JPG', import.meta.url);
-const mamay = new URL('../images/elements/elements-mamay.JPG', import.meta.url)
-const tazherany = new URL('../images/elements/elements-tazherany.JPG', import.meta.url)
-const aya = new URL('../images/elements/elements-aya.JPG', import.meta.url)
-const olkhon = new URL('../images/elements/elements-olkhon.JPG', import.meta.url)
-
-export const initialCards = [
-  {
-    name: 'Аршан',
-    link: arshan
-  },
-  {
-    name: 'Большая Байкальская Тропа',
-    link: bbt
-  },
-  {
-    name: 'Мамай',
-    link: mamay
-  },
-  {
-    name: 'Тажеранские степи',
-    link: tazherany
-  },
-  {
-    name: 'Бухта Ая',
-    link: aya
-  },
-  {
-    name: 'Ольхон',
-    link: olkhon
-  },
-];
-
 // параметры валидации
 export const currentParams = {
   formSelector: '.form',
@@ -70,8 +35,8 @@ export const CARD_TEMPLATE_SELECTOR = '#element-template'
 export const POPUP_WITH_PHOTO_SELECTOR = '#viewPhoto'
 export const POPUP_EDIT_FORM_SELECTOR = '#profileForm'
 export const POPUP_PHOTO_PROFILE_SELECTOR = '#profileImageForm'
-
 export const POPUP_ADD_CARD_FORM_SELECTOR = '#addCardForm'
+export const POPUP_DELETE_CARD_SELECTOR = '#deleteImagePopup'
 export const POPUP_PHOTO_SELECTOR = '.popup__photo'
 export const POPUP_PHOTO_CAPTION_SELECTOR = '.popup__photo-caption'
 
@@ -79,3 +44,7 @@ export const POPUP_PHOTO_CAPTION_SELECTOR = '.popup__photo-caption'
 export const profilePhoto = document.querySelector('.profile__photo');
 //оверлей аватара
 export const profilePhotoOverlay = document.querySelector('.profile__photo-block');
+
+// параметры для Api
+export const BASE_ROUTE = 'https://mesto.nomoreparties.co/v1/cohort-28'
+export const TOKEN = '0760ddfd-b432-4756-af57-8cde608b855b'
