@@ -31,6 +31,29 @@ export default class Api {
         about:about
       })
     }
-    return fetch(`${this._params.baseRoute}/users/me`, queryParams);
+    return fetch(`${this._params.baseRoute}/users/me`, queryParams)
+      .then(res => {
+        if (res.ok) {
+          return res.json();
+        }
+        return Promise.reject(`Ошибка  патч инфы: ${res.status}`);
+      });
+  }
+  addNewCard(card) {
+    const queryParams = {
+      method: 'POST',
+      headers: this._queryParams.headers,
+      body: JSON.stringify({
+        name: card.name,
+        link: card.link
+      })
+    }
+    return fetch(`${this._params.baseRoute}/cards`, queryParams)
+      .then(res => {
+        if (res.ok) {
+          return res.json();
+        }
+        return Promise.reject(`Ошибка пост карточки: ${res.status}`);
+      });
   }
 }

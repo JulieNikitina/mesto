@@ -42,8 +42,10 @@
 @import url(../blocks/elements/elements.css);
 @import url(../blocks/element/element.css);
 @import url(../blocks/element/__basket-button/element__basket-button.css);
+@import url(../blocks/element/__like-section/element__like-section.css);
 @import url(../blocks/element/__like-button/element__like-button.css);
 @import url(../blocks/element/__like-button/_active/element__like-button_active.css);
+@import url(../blocks/element/__like-count/element__like-count.css);
 
 
 @import url(../blocks/element/__text-block/element__text-block.css);
