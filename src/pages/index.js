@@ -23,14 +23,36 @@ import {
   formEditPhotoProfile,
   profilePhotoOverlay,
   POPUP_DELETE_CARD_SELECTOR,
-  TOKEN, BASE_ROUTE, profilePhoto,
+  TOKEN, BASE_ROUTE, profilePhoto, CARD_TEMPLATE_SELECTOR,
 } from "../utils/constants.js";
-
-import {createCard} from "../utils/utils.js";
 
 import "./index.css";
 import PopupWithConfirmation from "../components/PopupConfirmation";
 import Api from "../components/Api";
+import Card from "../components/Card";
+
+// создание карточки
+function createCard(item, popupPhoto, popupDeletePhoto){
+  const card = new Card({
+    data: item,
+    handleCardClick: (name, link) => {
+      popupPhoto.open(name, link)
+    },
+    handleDeleteIconClick: () => {
+      popupDeletePhoto.open()
+    },
+    handleLikeButtonClick: (id) => {
+      api.addLike(id)
+        .then((result) => {
+          console.log(result)
+        })
+        .catch((err) => {
+          console.log(err); // выведем ошибку в консоль
+        });
+    }
+  }, userInfo.getID(), CARD_TEMPLATE_SELECTOR);
+  return card;
+}
 
 // создание экземпляра класса информации о пользователе
 const userInfo = new UserInfo(userInfoSelectors);
@@ -43,6 +65,16 @@ const api = new Api({
     'Content-Type': 'application/json'
   }
 });
+
+api.getUserInfo()
+  .then((result) => {
+    userInfo.setUserInfo(result.name, result.about, result.avatar, result._id)
+    console.log(result._id)
+  })
+  .catch((err) => {
+    console.log(err); // выведем ошибку в консоль
+  });
+
 
 // заполнение страницы исходным массивом
 const cardListSection = new Section({
@@ -61,13 +93,6 @@ api.getInitialCards()
     console.log(err); // выведем ошибку в консоль
   });
 
-api.getUserInfo()
-  .then((result) => {
-    userInfo.setUserInfo(result.name, result.about, result.avatar)
-  })
-  .catch((err) => {
-    console.log(err); // выведем ошибку в консоль
-  });
 
 
 // создание объектов валидатора
@@ -84,7 +109,13 @@ formEditProfileImageValidator.enableValidation()
 const popupEditProfilePhoto = new PopupWithForm({
   validator: formEditProfileImageValidator,
   handleFormSubmit: (formData) => {
-    profilePhoto.src = formData.photo;
+    api.patchUserPhoto(formData.photo)
+      .then((result) => {
+        profilePhoto.src = result.avatar;
+      })
+      .catch((err) => {
+        console.log(err); // выведем ошибку в консоль
+      });
   }
 }, POPUP_PHOTO_PROFILE_SELECTOR);
 
@@ -94,7 +125,7 @@ const popupEditProfile = new PopupWithForm({
   handleFormSubmit: (formData) => {
     api.patchUserInfo(formData.name, formData.description)
       .then((result) => {
-        userInfo.setUserInfo(formData.name, formData.description, profilePhoto.src)
+        userInfo.setUserInfo(result.name, result.about, result.avatar)
       })
       .catch((err) => {
         console.log(err); // выведем ошибку в консоль
@@ -130,8 +161,16 @@ const popupPhotoView = new PopupWithImage(
 
 // создание попапа удаления карточки
 const popupDeleteCard = new PopupWithConfirmation({
-  handleConfirmation: () => {
-    console.log("hola")
+  handleConfirmation: (id) => {
+    api.deleteCard(id)
+      .then((result) => {
+        console.log(result)
+        //TODO надо ли удалять на странице до обновления??
+        // cardListSection.addItem(cardElement)
+      })
+      .catch((err) => {
+        console.log(err); // выведем ошибку в консоль
+      });
   }
 }, POPUP_DELETE_CARD_SELECTOR);
 
