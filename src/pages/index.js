@@ -38,8 +38,8 @@ function createCard(item, popupPhoto, popupDeletePhoto){
     handleCardClick: (name, link) => {
       popupPhoto.open(name, link)
     },
-    handleDeleteIconClick: () => {
-      popupDeletePhoto.open()
+    handleDeleteIconClick: (cardID, card) => {
+      popupDeletePhoto.open(cardID, card)
     },
     handleLikeButtonClick: (id) => {
       api.addLike(id)
@@ -137,14 +137,11 @@ const popupEditProfile = new PopupWithForm({
 const popupAddCard = new PopupWithForm({
   validator: formAddCardValidator,
   handleFormSubmit: (formData) => {
-    //TODO надо ли вставлять в разметку на странице до обновления??
-    // const card = createCard(formData, popupPhotoView, popupDeleteCard)
-    // const cardElement = card.generateCard();
     api.addNewCard(formData)
       .then((result) => {
-        console.log(result)
-        //TODO надо ли вставлять в разметку на странице до обновления??
-        // cardListSection.addItem(cardElement)
+        const card = createCard(result, popupPhotoView, popupDeleteCard)
+        const cardElement = card.generateCard();
+        cardListSection.addItem(cardElement)
       })
       .catch((err) => {
         console.log(err); // выведем ошибку в консоль
@@ -161,12 +158,11 @@ const popupPhotoView = new PopupWithImage(
 
 // создание попапа удаления карточки
 const popupDeleteCard = new PopupWithConfirmation({
-  handleConfirmation: (id) => {
-    api.deleteCard(id)
+  handleConfirmation: (cardID, card) => {
+    api.deleteCard(cardID)
       .then((result) => {
         console.log(result)
-        //TODO надо ли удалять на странице до обновления??
-        // cardListSection.addItem(cardElement)
+        card.remove();
       })
       .catch((err) => {
         console.log(err); // выведем ошибку в консоль
@@ -192,7 +188,6 @@ profilePhotoOverlay.addEventListener('click', () => {
   popupEditProfilePhoto.open()
 });
 
-// cardListSection.renderItems();
 popupPhotoView.setEventListeners();
 popupEditProfile.setEventListeners();
 popupAddCard.setEventListeners();

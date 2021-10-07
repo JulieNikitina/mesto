@@ -90,6 +90,7 @@ export default class Api {
         return Promise.reject(`Ошибка пост карточки: ${res.status}`);
       });
   }
+  //TODO: удаление лайка
   deleteCard(id) {
     const queryParams = {
       method: 'DELETE',

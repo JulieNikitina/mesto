@@ -27,12 +27,9 @@ export default class Card {
     this._handleCardClick(this._name, this._imageLink)
   }
   _handleDeletePhoto(){
-    console.log(this._id)
-    this._handleDeleteIconClick(this._id);
+    this._handleDeleteIconClick(this._id, this._element);
   }
-  // _deleteCard() {
-  //   this._element.remove();
-  // }
+
   _toggleLike() {
    this._likeButton.classList.toggle('element__like-button_active');
   }
@@ -68,6 +65,7 @@ export default class Card {
     this._photo.alt = this._name;
     return this._element;
   }
+  //TODO лайки
   _like () {
     this._isLiked = !this._isLiked
   }
