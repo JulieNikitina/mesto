@@ -41,10 +41,10 @@ function createCard(item, popupPhoto, popupDeletePhoto){
     handleDeleteIconClick: (cardID, card) => {
       popupDeletePhoto.open(cardID, card)
     },
-    handleLikeButtonClick: (id) => {
-      api.addLike(id)
+    handleLikeButtonClick: (id, isLiked, handleResult) => {
+      api.handleLikeButton(id, isLiked)
         .then((result) => {
-          console.log(result)
+          handleResult(result)
         })
         .catch((err) => {
           console.log(err); // выведем ошибку в консоль
@@ -87,6 +87,7 @@ const cardListSection = new Section({
 
 api.getInitialCards()
   .then((result) => {
+      console.log(result)
       cardListSection.renderItems(result)
   })
   .catch((err) => {

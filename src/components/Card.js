@@ -7,13 +7,12 @@ export default class Card {
     this._owner = data.owner._id;
     this._cardSelector = cardSelector;
     this._myID = myID
+    this._likesLength = this._likes.length;
 
     this._handleCardClick = handleCardClick;
     this._handleDeleteIconClick = handleDeleteIconClick;
     this._handleLike = handleLikeButtonClick;
-
-    this._isLiked = false;
-    this._isMy = false;
+    this._isLiked = this._likes.some((item) => item._id === this._myID);
   }
   _getTemplate() {
     const cardElement = document
@@ -43,8 +42,11 @@ export default class Card {
       this._handleDeletePhoto();
     });}
     this._likeButton.addEventListener('click', () => {
-      this._handleLike(this._id);
-      this._toggleLike();
+      this._handleLike(this._id, this._isLiked, (result) => {
+        this._isLiked = !this._isLiked;
+        this._likeCounter.textContent = result.likes.length;
+        this._toggleLike();
+      })
     });
   }
   generateCard () {
@@ -53,21 +55,19 @@ export default class Card {
     this._photo = this._element.querySelector('.element__photo');
     this._deleteButton = this._element.querySelector('.element__basket-button');
     this._likeButton = this._element.querySelector('.element__like-button');
+    if (this._isLiked) {
+      this._likeButton.classList.add('element__like-button_active');
+    }
     this._likeCounter = this._element.querySelector('.element__like-count');
     if (!this._myCard()) {
-      // удалить иконку из разметки если карточка чужая
       this._deleteButton.remove();
     }
     this._setEventListeners();
     this._element.querySelector('.element__title').textContent = this._name;
-    this._likeCounter.textContent = this._likes.length;
+    this._likeCounter.textContent = this._likesLength;
     this._photo.src = this._imageLink;
     this._photo.alt = this._name;
     return this._element;
-  }
-  //TODO лайки
-  _like () {
-    this._isLiked = !this._isLiked
   }
   _myCard () {
     if (this._myID === this._owner) {

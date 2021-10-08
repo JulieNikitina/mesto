@@ -42,6 +42,7 @@ export default class Api {
         return Promise.reject(`Ошибка  патч инфы: ${res.status}`);
       });
   }
+
   patchUserPhoto(link) {
     const queryParams = {
       method: 'PATCH',
@@ -77,32 +78,32 @@ export default class Api {
         return Promise.reject(`Ошибка пост карточки: ${res.status}`);
       });
   }
-  addLike(id) {
-    const queryParams = {
-      method: 'PUT',
-      headers: this._queryParams.headers
-    }
-    return fetch(`${this._params.baseRoute}/cards/likes/${id}`, queryParams)
-      .then(res => {
-        if (res.ok) {
-          return res.json();
-        }
-        return Promise.reject(`Ошибка пост карточки: ${res.status}`);
-      });
-  }
-  //TODO: удаление лайка
-  deleteCard(id) {
-    const queryParams = {
-      method: 'DELETE',
-      headers: this._queryParams.headers
-    }
-    return fetch(`${this._params.baseRoute}/cards/${id}`, queryParams)
-      .then(res => {
-        if (res.ok) {
-          return res.json();
-        }
-        return Promise.reject(`Ошибка делейт карточки: ${res.status}`);
-      });
-  }
 
+  handleLikeButton(id, isLiked) {
+    if (!isLiked) {
+      const queryParams = {
+        method: 'PUT',
+        headers: this._queryParams.headers
+      }
+      return fetch(`${this._params.baseRoute}/cards/likes/${id}`, queryParams)
+        .then(res => {
+          if (res.ok) {
+            return res.json();
+          }
+          return Promise.reject(`Ошибка лайк карточки: ${res.status}`);
+        });
+    } else {
+      const queryParams = {
+        method: 'DELETE',
+        headers: this._queryParams.headers
+      }
+      return fetch(`${this._params.baseRoute}/cards/likes/${id}`, queryParams)
+        .then(res => {
+          if (res.ok) {
+            return res.json();
+          }
+          return Promise.reject(`Ошибка удаление лайка карточки: ${res.status}`);
+        });
+    }
+  }
 }
