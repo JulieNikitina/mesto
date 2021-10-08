@@ -12,8 +12,10 @@ export default class Card {
     this._handleCardClick = handleCardClick;
     this._handleDeleteIconClick = handleDeleteIconClick;
     this._handleLike = handleLikeButtonClick;
+
     this._isLiked = this._likes.some((item) => item._id === this._myID);
   }
+
   _getTemplate() {
     const cardElement = document
       .querySelector(this._cardSelector)
@@ -22,9 +24,11 @@ export default class Card {
       .cloneNode(true);
     return cardElement;
   }
+
   _openPhotoViewPopup(){
     this._handleCardClick(this._name, this._imageLink)
   }
+
   _handleDeletePhoto(){
     this._handleDeleteIconClick(this._id, this._element);
   }
@@ -49,6 +53,13 @@ export default class Card {
       })
     });
   }
+
+  _myCard () {
+    if (this._myID === this._owner) {
+      return true
+    }
+  }
+  
   generateCard () {
     this._myCard()
     this._element = this._getTemplate();
@@ -68,10 +79,5 @@ export default class Card {
     this._photo.src = this._imageLink;
     this._photo.alt = this._name;
     return this._element;
-  }
-  _myCard () {
-    if (this._myID === this._owner) {
-      return true
-    }
   }
 }

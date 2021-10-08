@@ -16,11 +16,13 @@ export default class PopupWithConfirmation extends Popup {
     });
     super.setEventListeners();
   }
+
   open(cardID, card) {
     this.cardID = cardID;
     this.card = card;
     super.open();
   }
+
   close() {
     super.close();
   }

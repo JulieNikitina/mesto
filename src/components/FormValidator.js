@@ -13,7 +13,7 @@ export default class FormValidator {
     } else {
       this._hideInputError(inputElement);
     }
-  };
+  }
 
 // метод отображения ошибки валидации
   _showInputError(inputElement, errorMessage) {
@@ -21,7 +21,7 @@ export default class FormValidator {
     inputElement.classList.add(this._validationParams.inputErrorClass);
     errorElement.textContent = errorMessage;
     errorElement.classList.add(this._validationParams.errorClass);
-  };
+  }
 
 // метод скрытия ошибки валидации
   _hideInputError(inputElement) {
@@ -29,7 +29,7 @@ export default class FormValidator {
     inputElement.classList.remove(this._validationParams.inputErrorClass);
     errorElement.classList.remove(this._validationParams.errorClass);
     errorElement.textContent = '';
-  };
+  }
 
 // метод добавления слушателей и вызова функции проверки полей
   _setEventListeners() {
@@ -40,12 +40,12 @@ export default class FormValidator {
         this._toggleButtonState(this._inputList, this._submitButton, this._validationParams.inactiveButtonClass);
       });
     });
-  };
+  }
 
 // проверка валидности массива полей
   _hasInvalidInput(inputList) {
     return inputList.some(input => !input.validity.valid)
-  };
+  }
 
 // метод изменения состояни активности кнопки сохранения формы
   _toggleButtonState(inputList, buttonElement) {
@@ -56,7 +56,7 @@ export default class FormValidator {
       buttonElement.classList.remove(this._validationParams.inactiveButtonClass);
       buttonElement.removeAttribute('disabled');
     }
-  };
+  }
 
   // метод валидации открываемого попапа
   resetPopupValidationState() {
@@ -69,5 +69,5 @@ export default class FormValidator {
 // метод включения валидации
   enableValidation() {
     this._setEventListeners();
-  };
+  }
 }

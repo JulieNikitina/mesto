@@ -1,6 +1,9 @@
+import Api from "../components/Api";
+import Card from "../components/Card";
 import FormValidator from "../components/FormValidator.js";
-import PopupWithImage from "../components/PopupWithImage.js";
+import PopupWithConfirmation from "../components/PopupConfirmation";
 import PopupWithForm from "../components/PopupWithForm.js";
+import PopupWithImage from "../components/PopupWithImage.js";
 import Section from "../components/Section.js";
 import UserInfo from "../components/UserInfo.js";
 
@@ -23,15 +26,14 @@ import {
   formEditPhotoProfile,
   profilePhotoOverlay,
   POPUP_DELETE_CARD_SELECTOR,
-  TOKEN, BASE_ROUTE, profilePhoto, CARD_TEMPLATE_SELECTOR,
+  profilePhoto,
+  CARD_TEMPLATE_SELECTOR,
+  AUTORIZATION_PARAMS,
 } from "../utils/constants.js";
 
 import "./index.css";
-import PopupWithConfirmation from "../components/PopupConfirmation";
-import Api from "../components/Api";
-import Card from "../components/Card";
 
-// создание карточки
+// функция создания карточки
 function createCard(item, popupPhoto, popupDeletePhoto){
   const card = new Card({
     data: item,
@@ -47,7 +49,7 @@ function createCard(item, popupPhoto, popupDeletePhoto){
           handleResult(result)
         })
         .catch((err) => {
-          console.log(err); // выведем ошибку в консоль
+          console.log(err);
         });
     }
   }, userInfo.getID(), CARD_TEMPLATE_SELECTOR);
@@ -57,26 +59,7 @@ function createCard(item, popupPhoto, popupDeletePhoto){
 // создание экземпляра класса информации о пользователе
 const userInfo = new UserInfo(userInfoSelectors);
 
-// создание Api
-const api = new Api({
-  baseRoute: BASE_ROUTE,
-  headers: {
-    authorization: TOKEN,
-    'Content-Type': 'application/json'
-  }
-});
-
-api.getUserInfo()
-  .then((result) => {
-    userInfo.setUserInfo(result.name, result.about, result.avatar, result._id)
-    console.log(result._id)
-  })
-  .catch((err) => {
-    console.log(err); // выведем ошибку в консоль
-  });
-
-
-// заполнение страницы исходным массивом
+// создания секции контента
 const cardListSection = new Section({
   renderer: (item) => {
     const card = createCard(item, popupPhotoView, popupDeleteCard)
@@ -85,16 +68,25 @@ const cardListSection = new Section({
   }
 }, ELEMENTS_CONTAINER_SELECTOR);
 
-api.getInitialCards()
+// создание Api
+const api = new Api(AUTORIZATION_PARAMS);
+
+// заполнение информации об авторе
+api.getUserInfo()
   .then((result) => {
-      console.log(result)
-      cardListSection.renderItems(result)
+    userInfo.setUserInfo(result.name, result.about, result.avatar, result._id)
   })
   .catch((err) => {
-    console.log(err); // выведем ошибку в консоль
+    console.log(err);
   });
 
-
+api.getInitialCards()
+  .then((result) => {
+      cardListSection.renderItems(result.reverse())
+  })
+  .catch((err) => {
+    console.log(err);
+  });
 
 // создание объектов валидатора
 const formEditProfileValidator = new FormValidator(formEditProfile, currentParams);
@@ -110,14 +102,14 @@ formEditProfileImageValidator.enableValidation()
 const popupEditProfilePhoto = new PopupWithForm({
   validator: formEditProfileImageValidator,
   handleFormSubmit: (formData) => {
-    const buttonText = popupEditProfile.submitButton.textContent;
+    const buttonText = popupEditProfilePhoto.submitButton.textContent;
     popupEditProfilePhoto.submitButton.textContent = "Сохранение..."
     api.patchUserPhoto(formData.photo)
       .then((result) => {
         profilePhoto.src = result.avatar;
       })
       .catch((err) => {
-        console.log(err); // выведем ошибку в консоль
+        console.log(err);
       })
       .finally(() => {
         popupEditProfile.submitButton.textContent = buttonText;
@@ -136,7 +128,7 @@ const popupEditProfile = new PopupWithForm({
         userInfo.setUserInfo(result.name, result.about, result.avatar)
       })
       .catch((err) => {
-        console.log(err); // выведем ошибку в консоль
+        console.log(err);
       })
       .finally(() => {
         popupEditProfile.submitButton.textContent = buttonText;
@@ -157,7 +149,7 @@ const popupAddCard = new PopupWithForm({
         cardListSection.addItem(cardElement)
       })
       .catch((err) => {
-        console.log(err); // выведем ошибку в консоль
+        console.log(err);
       })
       .finally(() => {
         popupAddCard.submitButton.textContent = buttonText;
@@ -183,7 +175,7 @@ const popupDeleteCard = new PopupWithConfirmation({
         card.remove();
       })
       .catch((err) => {
-        console.log(err); // выведем ошибку в консоль
+        console.log(err);
       })
       .finally(() => {
         popupDeleteCard.submitButton.textContent = buttonText;
@@ -214,4 +206,3 @@ popupEditProfile.setEventListeners();
 popupAddCard.setEventListeners();
 popupEditProfilePhoto.setEventListeners();
 popupDeleteCard.setEventListeners();
-
