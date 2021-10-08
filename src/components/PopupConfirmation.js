@@ -20,6 +20,7 @@ export default class PopupWithConfirmation extends Popup {
   open(cardID, card) {
     this.cardID = cardID;
     this.card = card;
+    this.submitButton.focus();
     super.open();
   }
 
