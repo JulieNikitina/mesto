@@ -106,4 +106,19 @@ export default class Api {
         });
     }
   }
+  deleteCard(id) {
+    const queryParams = {
+      method: 'DELETE',
+      headers: this._queryParams.headers
+    }
+    return fetch(`${this._params.baseRoute}/cards/${id}`, queryParams)
+      .then(res => {
+        if (res.ok) {
+          return res.json();
+        }
+        return Promise.reject(`Ошибка делейт карточки: ${res.status}`);
+      });
+  }
+
+
 }

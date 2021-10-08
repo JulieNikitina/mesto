@@ -110,12 +110,17 @@ formEditProfileImageValidator.enableValidation()
 const popupEditProfilePhoto = new PopupWithForm({
   validator: formEditProfileImageValidator,
   handleFormSubmit: (formData) => {
+    const buttonText = popupEditProfile.submitButton.textContent;
+    popupEditProfilePhoto.submitButton.textContent = "Сохранение..."
     api.patchUserPhoto(formData.photo)
       .then((result) => {
         profilePhoto.src = result.avatar;
       })
       .catch((err) => {
         console.log(err); // выведем ошибку в консоль
+      })
+      .finally(() => {
+        popupEditProfile.submitButton.textContent = buttonText;
       });
   }
 }, POPUP_PHOTO_PROFILE_SELECTOR);
@@ -124,12 +129,17 @@ const popupEditProfilePhoto = new PopupWithForm({
 const popupEditProfile = new PopupWithForm({
   validator: formEditProfileValidator,
   handleFormSubmit: (formData) => {
+    const buttonText = popupEditProfile.submitButton.textContent;
+    popupEditProfile.submitButton.textContent = "Сохранение..."
     api.patchUserInfo(formData.name, formData.description)
       .then((result) => {
         userInfo.setUserInfo(result.name, result.about, result.avatar)
       })
       .catch((err) => {
         console.log(err); // выведем ошибку в консоль
+      })
+      .finally(() => {
+        popupEditProfile.submitButton.textContent = buttonText;
       });
   }
 }, POPUP_EDIT_FORM_SELECTOR);
@@ -138,6 +148,8 @@ const popupEditProfile = new PopupWithForm({
 const popupAddCard = new PopupWithForm({
   validator: formAddCardValidator,
   handleFormSubmit: (formData) => {
+    const buttonText = popupEditProfilePhoto.submitButton.textContent;
+    popupAddCard.submitButton.textContent = "Сохранение..."
     api.addNewCard(formData)
       .then((result) => {
         const card = createCard(result, popupPhotoView, popupDeleteCard)
@@ -146,6 +158,9 @@ const popupAddCard = new PopupWithForm({
       })
       .catch((err) => {
         console.log(err); // выведем ошибку в консоль
+      })
+      .finally(() => {
+        popupAddCard.submitButton.textContent = buttonText;
       });
   }
 }, POPUP_ADD_CARD_FORM_SELECTOR);
@@ -160,6 +175,8 @@ const popupPhotoView = new PopupWithImage(
 // создание попапа удаления карточки
 const popupDeleteCard = new PopupWithConfirmation({
   handleConfirmation: (cardID, card) => {
+    const buttonText = popupEditProfilePhoto.submitButton.textContent;
+    popupDeleteCard.submitButton.textContent = "Удаление...";
     api.deleteCard(cardID)
       .then((result) => {
         console.log(result)
@@ -167,6 +184,9 @@ const popupDeleteCard = new PopupWithConfirmation({
       })
       .catch((err) => {
         console.log(err); // выведем ошибку в консоль
+      })
+      .finally(() => {
+        popupDeleteCard.submitButton.textContent = buttonText;
       });
   }
 }, POPUP_DELETE_CARD_SELECTOR);

@@ -48,3 +48,5 @@ export const profilePhotoOverlay = document.querySelector('.profile__photo-block
 // параметры для Api
 export const BASE_ROUTE = 'https://mesto.nomoreparties.co/v1/cohort-28'
 export const TOKEN = '0760ddfd-b432-4756-af57-8cde608b855b'
+
+export const submitButton = document.querySelector('.form__submit-button');
