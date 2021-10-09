@@ -8,14 +8,8 @@ import Section from "../components/Section.js";
 import UserInfo from "../components/UserInfo.js";
 
 import {
-  addButton,
   currentParams,
-  editButton,
-  fieldDescription,
-  fieldName,
   userInfoSelectors,
-  formAddCard,
-  formEditProfile,
   POPUP_PHOTO_SELECTOR,
   POPUP_PHOTO_CAPTION_SELECTOR,
   POPUP_WITH_PHOTO_SELECTOR,
@@ -23,15 +17,30 @@ import {
   POPUP_EDIT_FORM_SELECTOR,
   POPUP_ADD_CARD_FORM_SELECTOR,
   POPUP_PHOTO_PROFILE_SELECTOR,
-  formEditPhotoProfile,
-  profilePhotoOverlay,
   POPUP_DELETE_CARD_SELECTOR,
-  profilePhoto,
   CARD_TEMPLATE_SELECTOR,
   AUTORIZATION_PARAMS,
 } from "../utils/constants.js";
 
 import "./index.css";
+
+// формы
+const formEditPhotoProfile = document.querySelector('#profileImageForm').querySelector('.form');
+const formEditProfile = document.querySelector('#profileForm').querySelector('.form');
+const formAddCard = document.querySelector('#addCardForm').querySelector('.form');
+
+// кнопки
+const editButton = document.querySelector('.profile__edit-button');
+export const addButton = document.querySelector('.profile__add-button');
+
+// поля формы редактирования профиля
+const fieldName = document.querySelector('#name-input');
+const fieldDescription = document.querySelector('#description-input');
+
+// аватар
+const profilePhoto = document.querySelector('.profile__photo');
+export const profilePhotoOverlay = document.querySelector('.profile__photo-block');
+
 
 // функция создания карточки
 function createCard(item, popupPhoto, popupDeletePhoto){
@@ -99,6 +108,7 @@ const popupEditProfilePhoto = new PopupWithForm({
     api.patchUserPhoto(formData.photo)
       .then((result) => {
         profilePhoto.src = result.avatar;
+        popupEditProfilePhoto.close();
       })
       .catch((err) => {
         console.log(err);
@@ -117,7 +127,8 @@ const popupEditProfile = new PopupWithForm({
     popupEditProfile.submitButton.textContent = "Сохранение..."
     api.patchUserInfo(formData.name, formData.description)
       .then((result) => {
-        userInfo.setUserInfo(result.name, result.about, result.avatar)
+        userInfo.setUserInfo(result.name, result.about, result.avatar);
+        popupEditProfile.close();
       })
       .catch((err) => {
         console.log(err);
@@ -138,7 +149,8 @@ const popupAddCard = new PopupWithForm({
       .then((result) => {
         const card = createCard(result, popupPhotoView, popupDeleteCard)
         const cardElement = card.generateCard();
-        cardListSection.addItem(cardElement)
+        cardListSection.addItem(cardElement);
+        popupAddCard.close();
       })
       .catch((err) => {
         console.log(err);
@@ -163,8 +175,8 @@ const popupDeleteCard = new PopupWithConfirmation({
     popupDeleteCard.submitButton.textContent = "Удаление...";
     api.deleteCard(cardID)
       .then((result) => {
-        console.log(result)
         card.remove();
+        popupDeleteCard.close();
       })
       .catch((err) => {
         console.log(err);
