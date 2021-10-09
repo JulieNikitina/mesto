@@ -71,19 +71,11 @@ const cardListSection = new Section({
 // создание Api
 const api = new Api(AUTORIZATION_PARAMS);
 
-// заполнение информации об авторе
-api.getUserInfo()
-  .then((result) => {
-    userInfo.setUserInfo(result.name, result.about, result.avatar, result._id)
-  })
-  .catch((err) => {
-    console.log(err);
-  });
-
-api.getInitialCards()
-  .then((result) => {
-      cardListSection.renderItems(result.reverse())
-  })
+// заполнение массива карточек и инфы о юзере данными с сервера
+Promise.all([api.getUserInfo(), api.getInitialCards()])
+  .then(([resultUserInfo, resultInitialCards]) => {
+    userInfo.setUserInfo(resultUserInfo.name, resultUserInfo.about, resultUserInfo.avatar, resultUserInfo._id);
+    cardListSection.renderItems(resultInitialCards.reverse()); })
   .catch((err) => {
     console.log(err);
   });

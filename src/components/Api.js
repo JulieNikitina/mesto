@@ -5,23 +5,24 @@ export default class Api {
     this._queryParams.headers = this._params.headers
   }
 
+  _getResponseData(res) {
+    if (!res.ok) {
+      return Promise.reject(`Ошибка: ${res.status}`);
+    }
+    return res.json();
+  }
+
   getInitialCards() {
     return fetch(`${this._params.baseRoute}/cards`, this._queryParams)
       .then(res => {
-        if (res.ok) {
-          return res.json();
-        }
-        return Promise.reject(`Ошибка: ${res.status}`);
+        return this._getResponseData(res)
       });
   }
 
   getUserInfo() {
     return fetch(`${this._params.baseRoute}/users/me`, this._queryParams)
       .then(res => {
-        if (res.ok) {
-          return res.json();
-        }
-        return Promise.reject(`Ошибка: ${res.status}`);
+        return this._getResponseData(res)
       });
   }
 
@@ -36,10 +37,7 @@ export default class Api {
     }
     return fetch(`${this._params.baseRoute}/users/me`, queryParams)
       .then(res => {
-        if (res.ok) {
-          return res.json();
-        }
-        return Promise.reject(`Ошибка  патч инфы: ${res.status}`);
+        return this._getResponseData(res)
       });
   }
 
@@ -53,10 +51,7 @@ export default class Api {
     }
     return fetch(`${this._params.baseRoute}/users/me/avatar`, queryParams)
       .then(res => {
-        if (res.ok) {
-          return res.json();
-        }
-        return Promise.reject(`Ошибка  патч фотки: ${res.status}`);
+        return this._getResponseData(res)
       });
   }
 
@@ -71,10 +66,7 @@ export default class Api {
     }
     return fetch(`${this._params.baseRoute}/cards`, queryParams)
       .then(res => {
-        if (res.ok) {
-          return res.json();
-        }
-        return Promise.reject(`Ошибка пост карточки: ${res.status}`);
+        return this._getResponseData(res)
       });
   }
 
@@ -85,10 +77,7 @@ export default class Api {
     }
     return fetch(`${this._params.baseRoute}/cards/${id}`, queryParams)
       .then(res => {
-        if (res.ok) {
-          return res.json();
-        }
-        return Promise.reject(`Ошибка делейт карточки: ${res.status}`);
+        return this._getResponseData(res)
       });
   }
 
@@ -100,10 +89,7 @@ export default class Api {
       }
       return fetch(`${this._params.baseRoute}/cards/likes/${id}`, queryParams)
         .then(res => {
-          if (res.ok) {
-            return res.json();
-          }
-          return Promise.reject(`Ошибка лайк карточки: ${res.status}`);
+          return this._getResponseData(res)
         });
     } else {
       const queryParams = {
@@ -112,10 +98,7 @@ export default class Api {
       }
       return fetch(`${this._params.baseRoute}/cards/likes/${id}`, queryParams)
         .then(res => {
-          if (res.ok) {
-            return res.json();
-          }
-          return Promise.reject(`Ошибка удаление лайка карточки: ${res.status}`);
+          return this._getResponseData(res)
         });
     }
   }
