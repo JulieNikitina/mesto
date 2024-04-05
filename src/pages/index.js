@@ -84,6 +84,7 @@ const api = new Api(AUTORIZATION_PARAMS);
 Promise.all([api.getUserInfo(), api.getInitialCards()])
   .then(([resultUserInfo, resultInitialCards]) => {
     userInfo.setUserInfo(resultUserInfo.name, resultUserInfo.about, resultUserInfo.avatar, resultUserInfo._id);
+    console.log(resultInitialCards)
     cardListSection.renderItems(resultInitialCards.reverse()); })
   .catch((err) => {
     console.log(err);
